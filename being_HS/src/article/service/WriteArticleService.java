@@ -53,9 +53,18 @@ public class WriteArticleService {
 
 	private Article toArticle(WriteRequest req) {
 		Date now = new Date();
-		return new Article(null, req.getWriter(), req.getType(), req.getAcreage(), req.getBudget(), req.getField(),
-				req.getSpace(), req.getTitle(), req.getContent(),
+		return new Article(null,
+				req.getWriter(), 
+				req.getType(),
+				req.getAcreage(),
+				req.getBudget(),
+				req.getField(),
+				req.getSpace(),
+				req.getTitle(), 
+				req.getContent(),
 //				req.getProdnum(),
-				now, 0);
+				now,
+				0
+				);
 	}
 }

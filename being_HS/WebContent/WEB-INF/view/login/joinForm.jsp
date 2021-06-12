@@ -77,32 +77,7 @@
 						<input type="password" class="form-control" name="password" placeholder="비밀번호"> <span
 						class="glyphicon glyphicon-lock form-control-feedback"></span>
 				</div>
-				<div class="form-group has-feedback">
-				<p> 비밀번호 확인 </p>
-					<input type="password" class="form-control" name="confirmPassword"
-						placeholder="비밀번호 확인"> <span
-						class="glyphicon glyphicon-log-in form-control-feedback"></span>
-				</div>
-				<div class="form-group has-feedback">
-				<p> 별명 </p>
-					<input type="text" class="form-control" name="name"
-						placeholder="별명"> <span
-						class="glyphicon glyphicon-user form-control-feedback"></span>
-				</div>
-				<div class="row">
-					<div class="col-xs-8">
-						<div class="checkbox icheck">
-							<label> <input type="checkbox"> I agree to the <a
-								href="#">terms</a>
-							</label>
-						</div>
-					</div>
-					<!-- /.col -->
-               <div class="col-xs-4">
-                  <button type="submit" class="btn btn-primary btn-block btn-flat" id="btn">회원가입 완료</button>
-               </div>
-               <!-- /.col -->
-            </div>
+				
          </form>
 
          <div class="social-auth-links text-center">
