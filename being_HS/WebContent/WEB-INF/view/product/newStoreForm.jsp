@@ -9,7 +9,7 @@
 <form action="write.do" method="post">
 <p>
 	제목:<br/><input type="text" name="name" value="${param.name}">
-	<c:if test="${errors.name}">제목을 입력하세요.</c:if>
+	<c:if test="${errors.name}">을 입력하세요.</c:if>
 </p>
 
 <p>
@@ -24,27 +24,27 @@
 
 <p>
 	내용:<br/>
-	<textarea name="INTRODUCE" rows="5" cols="30">${param.INTRODUCE}</textarea>
+	<textarea name="introduce" rows="5" cols="30">${param.introduce}</textarea>
 </p>
 
 <p>
 	가격:<br/>
-	<textarea name="PRICE" rows="5" cols="30">${param.PRICE}</textarea>
+	<textarea name="price" rows="5" cols="30">${param.price}</textarea>
 </p>
 
 <p>
 	할인가:<br/>
-	<textarea name="DCPRICE" rows="5" cols="30">${param.DCPRICE}</textarea>
+	<textarea name="dcprice" rows="5" cols="30">${param.dcprice}</textarea>
 </p>
 
 <p>
 	브랜드:<br/>
-	<textarea name="BRAND" rows="5" cols="30">${param.BRAND}</textarea>
+	<textarea name="brand" rows="5" cols="30">${param.brand}</textarea>
 </p>
 
 <p>
 	키워드:<br/>
-	<textarea name="KEYWD" rows="5" cols="30">${param.KEYWD}</textarea>
+	<textarea name="keywd" rows="5" cols="30">${param.keywd}</textarea>
 </p>
 
 
@@ -53,7 +53,7 @@
           <ul class="story-category">
           
         	  <li class="category=ct">
-       		   	<select id="category" name="CATEGORY">
+       		   	<select id="category" name="category">
        		   	<option value="">-카테고리-</option>
                          <option value="책장">책장</option>
                          <option value="의자">의자</option>
@@ -67,7 +67,7 @@
          	 </li>
           
                <li class="freeyn-ct">
-                   <select name = "FREEYN">
+                   <select name = "freeyn">
                         <option value="Y">무료배송</option>
                         <option value="N">유료배송</option>
                         
@@ -82,7 +82,7 @@
 
 <p>
 	링크:<br/>
-	<textarea name="LINK" rows="5" cols="30">${param.LINK}</textarea>
+	<textarea name="link" rows="5" cols="30">${param.link}</textarea>
 </p>
 
 

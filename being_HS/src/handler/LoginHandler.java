@@ -46,6 +46,7 @@ public class LoginHandler implements CommandHandler {
          errors.put("id", Boolean.TRUE);
       if (password == null || password.isEmpty())
          errors.put("password", Boolean.TRUE);
+      
 
       if (!errors.isEmpty()) {
          return FORM_VIEW;

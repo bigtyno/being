@@ -19,12 +19,12 @@
 		<td>평점</td>
 		<td>무료배송</td>
 	</tr>
-<c:if test="${ProductPage.hasNoProducts()}">
+<c:if test="${productPage.hasNoProducts()}">
 	<tr>
 		<td colspan="4">상품이 없습니다.</td>
 	</tr>
 </c:if>
-<c:forEach var="product" items="${ProductPage.content}">
+<c:forEach var="product" items="${productPage.content}">
 	<tr>
 <!-- 	썸네일 -->
 		<td>${product.num}</td>
@@ -32,7 +32,7 @@
 		<td>${product.brand}</td>
 		<td>
 <!-- 		이름 -->
-		<a href="read.do?no=${product.num}&pageNo=${ProductPage.currentPage}">
+		<a href="read.do?no=${product.num}&pageNo=${productPage.currentPage}">
 		<c:out value="${product.name}"/>
 		</a>
 		</td>
@@ -52,19 +52,19 @@
 		</td>
 	</tr>
 </c:forEach>
-<c:if test="${ProductPage.hasProducts()}">
+<c:if test="${productPage.hasProducts()}">
 	<tr>
 		<td colspan="4">
-			<c:if test="${ProductPage.startPage > 5}">
-			<a href="list.do?pageNo=${ProductPage.startPage - 5}">[이전]</a>
+			<c:if test="${productPage.startPage > 5}">
+			<a href="list.do?pageNo=${productPage.startPage - 5}">[이전]</a>
 			</c:if>
 			<c:forEach var="pNo" 
-					   begin="${ProductPage.startPage}" 
-					   end="${ProductPage.endPage}">
+					   begin="${productPage.startPage}" 
+					   end="${productPage.endPage}">
 			<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
 			</c:forEach>
-			<c:if test="${ProductPage.endPage < ProductPage.totalPages}">
-			<a href="list.do?pageNo=${ProductPage.startPage + 5}">[다음]</a>
+			<c:if test="${productPage.endPage < productPage.totalPages}">
+			<a href="list.do?pageNo=${productPage.startPage + 5}">[다음]</a>
 			</c:if>
 		</td>
 	</tr>

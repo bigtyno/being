@@ -5,7 +5,12 @@ import java.util.Map;
 import article.model.Writer;
 
 public class Product {
-	
+
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+	private String userId;
 	private Writer writer;
 	private int num;
 	private String name;
@@ -28,6 +33,29 @@ public class Product {
 				+ ", keywd=" + keywd + ", category=" + category + ", freeyn=" + freeyn + ", link=" + link
 				+ ", avggrade=" + avggrade + "]";
 	}
+//modify 입력용
+
+public Product(String userId, int num, String name, String thumbnail, String infoimage, String introduce, int price,
+		int dcprice, String brand, String keywd, String category, String freeyn, String link) {
+	super();
+	this.userId = userId;
+	this.num = num;
+	this.name = name;
+	this.thumbnail = thumbnail;
+	this.infoimage = infoimage;
+	this.introduce = introduce;
+	this.price = price;
+	this.dcprice = dcprice;
+	this.brand = brand;
+	this.keywd = keywd;
+	this.category = category;
+	this.freeyn = freeyn;
+	this.link = link;
+}
+
+
+
+
 
 public Product(int num, String name, String thumbnail, String infoimage, String introduce, int price, int dcprice,
 			String brand, String keywd, String category, String freeyn, String link, int avggrade) {
@@ -90,6 +118,9 @@ public Product(Writer writer,String name, String thumbnail, String infoimage, St
 	}
 
 	
+	public String getUserId() {
+		return userId;
+	}
 
 	public int getNum() {
 		return num;
@@ -189,7 +220,8 @@ public Product(Writer writer,String name, String thumbnail, String infoimage, St
 	}
 	public void validate(Map<String, Boolean> errors) {
 		if (name == null || name.trim().isEmpty()) {
-			errors.put("title", Boolean.TRUE);
+			errors.put("name", Boolean.TRUE);
 		}
+		
 	}
 }

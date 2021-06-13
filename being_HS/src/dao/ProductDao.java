@@ -7,11 +7,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 import java.util.ArrayList;
-//import java.util.Date;
 import java.util.List;
-
-//import article.model.Article;
-//import article.model.Writer;
+import article.model.Writer;
 import jdbc.JdbcUtil;
 import model.Product;
 
@@ -29,32 +26,42 @@ public class ProductDao {
 					+ "?,?,?,?,"
 					+ "?,?,?,0)");
 			
-			pstmt.setString(2, product.getName());
-			pstmt.setString(3, product.getThumbnail());
-			pstmt.setString(4, product.getInfoimage());
-			pstmt.setString(5, product.getIntroduce());
-			pstmt.setInt(6,	(int)product.getPrice());
-			pstmt.setInt(7, (int)product.getdcprice());
-			pstmt.setString(8, product.getBrand());
-			pstmt.setString(9, product.getKeywd());
-			pstmt.setString(10, product.getCategory());
-			pstmt.setString(11, product.getFreeyn());
-			pstmt.setString(12, product.getLink());		
-			
-//			int insertedCount = pstmt.executeUpdate();
+			pstmt.setString(1, product.getName());
+			pstmt.setString(2, product.getThumbnail());
+			pstmt.setString(3, product.getInfoimage());
+			pstmt.setString(4, product.getIntroduce());
+			pstmt.setInt(5,	(int)product.getPrice());
+			pstmt.setInt(6, (int)product.getdcprice());
+			pstmt.setString(7, product.getBrand());
+			pstmt.setString(8, product.getKeywd());
+			pstmt.setString(9, product.getCategory());
+			pstmt.setString(10, product.getFreeyn());
+			pstmt.setString(11, product.getLink());		
+			int insertedCount = pstmt.executeUpdate();
 
 			
-			/*
-			 * if (insertedCount > 0) { stmt = conn.createStatement(); rs =
-			 * stmt.executeQuery("select max(NUM) from WRITING"); if (rs.next()) { Integer
-			 * newNo = rs.getInt(1); return new Article(newNo, article.getWriter(),
-			 * article.getType(), article.getAcreage(), article.getBudget(),
-			 * article.getField(), article.getSpace(), article.getTitle(),
-			 * article.getContent(), // article.getProdnum(), article.getRegDate(), //
-			 * article.getModifiedDate(), 0); } }
-			 */
-			 return null;
-			 
+			if (insertedCount > 0) {
+				stmt = conn.createStatement();
+				rs = stmt.executeQuery("select max(NUM) from PROD_MNG");
+				if (rs.next()) {
+					Integer newNo = rs.getInt(1);
+					return new Product(newNo,
+							product.getName(),
+							product.getThumbnail(),
+							product.getInfoimage(),
+							product.getIntroduce(),
+							product.getPrice(),
+							product.getDcprice(),
+							product.getBrand(),
+							product.getKeywd(),
+							product.getCategory(),
+							product.getFreeyn(),
+							product.getLink(),
+							product.getAvggrade());
+				}
+			}
+			return null;
+			
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(stmt);
@@ -139,37 +146,35 @@ public class ProductDao {
 		}
 	}
 	
-	public void increaseReadCount(Connection conn, int no) throws SQLException {
-		try (PreparedStatement pstmt = 
-				conn.prepareStatement(
-						"update WRITING set READCOUNT = READCOUNT + 1 "+
-						"where NUM = ?")) {
-			pstmt.setInt(1, no);
-			pstmt.executeUpdate();
-		}
-	}
-	
 	public int update(Connection conn, int no, 
-			String title, 
-			String content,
-			String type,
-			String acreage,
-			String budget,
-			String field,
-			String space
+			String name, 
+			String thumbnail,
+			String infoimage,
+			String introduce,
+			int price,
+			int dcprice,
+			String brand,
+			String keywd,
+			String category,
+			String freeyn,
+			String link
 			) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
-						"update WRITING set title = ?,CONTENTOF=?, TYPE=?, ACREAGE =?, BUDGET=?,FIELD=?,SPACE=?  "+
+						"update PROD_MNG set NAME = ?,THUMBNAIL=?, INFOIMAGE=?, INTRODUCE =?, PRICE=?, DCPRICE=?,BRAND=?,KEYWD=?,CATEGORY=?,FREEYN=?,LINK=?,0 "+
 						"where NUM = ?")) {
-			pstmt.setString(1, title);
-			pstmt.setString(2, content);
-			pstmt.setString(3, type);
-			pstmt.setString(4, acreage);
-			pstmt.setString(5, budget);
-			pstmt.setString(6, field);
-			pstmt.setString(7, space);
-			pstmt.setInt(8, no);
+			pstmt.setString(1, name);
+			pstmt.setString(2, thumbnail);
+			pstmt.setString(3, infoimage);
+			pstmt.setString(4, introduce);
+			pstmt.setInt(5,(int) price);
+			pstmt.setInt(6,(int)dcprice);
+			pstmt.setString(7, brand);
+			pstmt.setString(8, keywd);
+			pstmt.setString(9, category);
+			pstmt.setString(10, freeyn);
+			pstmt.setString(11, link);
+			pstmt.setInt(12, no);
 			return pstmt.executeUpdate();
 		}
 	}
@@ -177,7 +182,7 @@ public class ProductDao {
 	public int delete(Connection conn, int no) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
-						"delete from WRITING "+
+						"delete from PROD_MNG "+
 						"where NUM = ?")) {
 			pstmt.setInt(1, no);
 			return pstmt.executeUpdate();

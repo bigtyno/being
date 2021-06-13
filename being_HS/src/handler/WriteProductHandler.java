@@ -49,6 +49,7 @@ public class WriteProductHandler implements CommandHandler {
 		User user = (User)req.getSession(false).getAttribute("authUser");
 
 		Product productreq = createProduct(user, req);
+		System.out.println(productreq );
 		productreq.validate(errors);
 		
 		if (!errors.isEmpty()) {
@@ -66,16 +67,16 @@ public class WriteProductHandler implements CommandHandler {
 	private Product createProduct(User user, HttpServletRequest req) {
 		return new Product(
 				new Writer(user.getId(),user.getName()),
-				req.getParameter("NAME"),
-				req.getParameter("THUMBNAIL"),
-				req.getParameter("INFOIMAGE"),
-				req.getParameter("INTRODUCE"),
-				Integer.parseInt(req.getParameter("PRICE")),
-				Integer.parseInt(req.getParameter("DCPRICE")),
-				req.getParameter("BRAND"),
-				req.getParameter("KEYWD"),
-				req.getParameter("CATEGORY"),
-				req.getParameter("FREEYN"),
-				req.getParameter("LINK"));
+				req.getParameter("name"),
+				req.getParameter("thumbnail"),
+				req.getParameter("infoimage"),
+				req.getParameter("introduce"),
+				Integer.parseInt(req.getParameter("price")),
+				Integer.parseInt(req.getParameter("dcprice")),
+				req.getParameter("brand"),
+				req.getParameter("keywd"),
+				req.getParameter("category"),
+				req.getParameter("freeyn"),
+				req.getParameter("link"));
 	}
 }

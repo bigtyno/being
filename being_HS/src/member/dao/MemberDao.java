@@ -26,7 +26,9 @@ public class MemberDao {
 						rs.getString("EMAIL"), 
 						rs.getString("NAME"), 
 						rs.getString("PASSWORD"),
-						toDate(rs.getTimestamp("REGISTDAY")));
+						toDate(rs.getTimestamp("REGISTDAY")),
+						rs.getInt("LVL")
+						);
 			}
 			return member;
 		} finally {
