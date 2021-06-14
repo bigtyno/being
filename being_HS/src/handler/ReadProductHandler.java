@@ -15,7 +15,7 @@ public class ReadProductHandler implements CommandHandler {
 	@Override
 	public String process(HttpServletRequest req, HttpServletResponse res) 
 			throws Exception {
-		String noVal = req.getParameter("no");
+		String noVal = req.getParameter("num");
 		int productNum = Integer.parseInt(noVal);
 		try {
 			Product product = readService.getProduct(productNum);

@@ -17,6 +17,7 @@
 	<textarea name="thumbnail" rows="5" cols="30">${param.thumbnail}</textarea>
 </p>
 
+
 <p>
 	소개이미지:<br/>
 	<textarea name="infoimage" rows="5" cols="30">${param.infoimage}</textarea>

@@ -8,13 +8,14 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import article.service.ArticleData;
+
 import article.service.ArticleNotFoundException;
 import article.service.PermissionDeniedException;
 import auth.service.User;
-import member.service.ModifyProductService;
+import service.ModifyProductService;
 import model.Product;
 import mvc.command.CommandHandler;
+import service.ProductNotFoundException;
 import service.ReadProductService;
 
 public class ModifyProductHandler implements CommandHandler {
@@ -39,9 +40,9 @@ public class ModifyProductHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res)
 			throws IOException {
 		try {
-			String noVal = req.getParameter("no");
-			int no = Integer.parseInt(noVal);
-			Product product = readService.getProduct(no);
+			String noVal = req.getParameter("num");
+			int num = Integer.parseInt(noVal);
+			Product product = readService.getProduct(num);
 			
 			User authUser = (User) req.getSession().getAttribute("authUser");
 			if (!canModify(authUser)) {
@@ -50,8 +51,8 @@ public class ModifyProductHandler implements CommandHandler {
 			}
 			
 			
-			Product modReq = new Product(authUser.getId(), 
-					no,					
+			Product modReq = new Product(authUser, 
+					num,					
 					product.getName(),
 					product.getThumbnail(),
 					product.getInfoimage(),
@@ -69,7 +70,7 @@ public class ModifyProductHandler implements CommandHandler {
 			req.setAttribute("modReq", modReq);
 
 			return FORM_VIEW;
-		} catch (ArticleNotFoundException e) {
+		} catch (ProductNotFoundException e) {
 			res.sendError(HttpServletResponse.SC_NOT_FOUND);
 			return null;
 		}
@@ -79,7 +80,7 @@ public class ModifyProductHandler implements CommandHandler {
 		if(authUser.getLvl()==1)
 			return true;
 		
-		return false;
+			return false;
 		
 	}
 
@@ -89,18 +90,17 @@ public class ModifyProductHandler implements CommandHandler {
 		try {
 	         req.setCharacterEncoding("UTF-8");
 	      } catch (UnsupportedEncodingException e1) {
-	         // TODO Auto-generated catch block
 	         e1.printStackTrace();
 	    }
 		
 		User authUser = (User) req.getSession().getAttribute("authUser");
-		String noVal = req.getParameter("no");
-		int no = Integer.parseInt(noVal);
+		String noVal = req.getParameter("num");
+		int num = Integer.parseInt(noVal);
 		
 
 		Product modReq = new Product(
-				authUser.getId(),
-				no,
+				authUser,
+				num,
 				req.getParameter("name"),
 				req.getParameter("thumbnail"),
 				req.getParameter("infoimage"),
@@ -118,9 +118,6 @@ public class ModifyProductHandler implements CommandHandler {
 		Map<String, Boolean> errors = new HashMap<>();
 		req.setAttribute("errors", errors);
 		modReq.validate(errors);
-		
-		
-		
 		
 		if (!errors.isEmpty()) {
 			return FORM_VIEW;

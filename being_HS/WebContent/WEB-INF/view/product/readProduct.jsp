@@ -8,19 +8,7 @@
 </head>
 <body>
 <table border="1" width="100%">
-<!-- <tr> -->
-<!-- 	<td>번호</td> -->
-<%-- 	<td>${articleData.article.number}</td> --%>
-<!-- </tr> -->
-<%-- <tr>
-	<td>작성자</td>
-	<td>${articleData.article.writer.name}</td>
-	<td>${articleData.article.writer.id}</td>
-</tr>
-<tr>
-	<td>제목</td>
-	<td><c:out value='${storeData.store.title}' /></td>
-</tr> --%>
+
 <tr>
 	<td>상품이름</td>
 	<td><u:pre value='${product.name}'/></td>
@@ -62,11 +50,11 @@
 </tr>
 <tr>
 	 <td colspan="2">
-		<c:set var="pageNo" value="${empty param.pageNo ? '1' : param.pageNo}" />
-		<a href="list.do?pageNo=${pageNo}">[목록]</a>
+		<c:set var="pageNum" value="${empty param.pageNum ? '1' : param.pageNum}" />
+		<a href="list.do?pageNum=${pageNum}">[목록]</a>
 		<c:if test="${authUser.lvl == 1}"> 
-		<a href="modify.do?no=${product.num}">[게시글수정]</a>
-		<a href="delete.do?no=${product.num}">[게시글삭제]</a> 
+		<a href="modify.do?num=${product.num}">[게시글수정]</a>
+		<a href="delete.do?num=${product.num}">[게시글삭제]</a> 
 		</c:if> 
 	</td> 
 </tr>

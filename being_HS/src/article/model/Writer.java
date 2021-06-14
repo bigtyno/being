@@ -4,10 +4,13 @@ public class Writer {
 
 	private String id;
 	private String name;
-
-	public Writer(String id, String name) {
+	private int lvl;
+	
+	public Writer(String id, String name, int lvl) {
+		super();
 		this.id = id;
 		this.name = name;
+		this.lvl = lvl;
 	}
 
 	public String getId() {
@@ -16,6 +19,14 @@ public class Writer {
 
 	public String getName() {
 		return name;
+	}
+
+	public int getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
 	}
 
 }

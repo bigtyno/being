@@ -39,7 +39,6 @@ public class WriteProductHandler implements CommandHandler {
 		try {
 	         req.setCharacterEncoding("UTF-8");
 	      } catch (UnsupportedEncodingException e1) {
-	         // TODO Auto-generated catch block
 	         e1.printStackTrace();
 	      }
 		
@@ -56,17 +55,16 @@ public class WriteProductHandler implements CommandHandler {
 			return FORM_VIEW;
 		}
 		
-		int newProductNo = writeProductService.write(productreq);
-		System.out.println("ㅇㅇ");
+		int newProductNum = writeProductService.write(productreq);
 		
-		req.setAttribute("newProductNo", newProductNo);
+		req.setAttribute("newProductNum", newProductNum);
 		
 		return "/WEB-INF/view/product/newStoreSuccess.jsp";
 	}
 
 	private Product createProduct(User user, HttpServletRequest req) {
 		return new Product(
-				new Writer(user.getId(),user.getName()),
+				new Writer(user.getId(),user.getName(),user.getLvl()),
 				req.getParameter("name"),
 				req.getParameter("thumbnail"),
 				req.getParameter("infoimage"),

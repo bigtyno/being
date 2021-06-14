@@ -64,7 +64,7 @@ public class WriteArticleHandler implements CommandHandler {
 
 	private WriteRequest createWriteRequest(User user, HttpServletRequest req) {
 		return new WriteRequest(
-				new Writer(user.getId(), user.getName()),
+				new Writer(user.getId(), user.getName(),user.getLvl()),
 				req.getParameter("TYPE"),
 				req.getParameter("ACREAGE"),
 				req.getParameter("BUDGET"),

@@ -3,14 +3,11 @@ package model;
 import java.util.Map;
 
 import article.model.Writer;
+import auth.service.User;
 
 public class Product {
 
-
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
-	private String userId;
+	private User userId;
 	private Writer writer;
 	private int num;
 	private String name;
@@ -25,7 +22,7 @@ public class Product {
 	private String freeyn;
 	private String link;
 	private int avggrade;
-	
+	private int ProductNum;
 @Override
 	public String toString() {
 		return "Product [num=" + num + ", name=" + name + ", thumbnail=" + thumbnail + ", infoimage=" + infoimage
@@ -35,7 +32,7 @@ public class Product {
 	}
 //modify 입력용
 
-public Product(String userId, int num, String name, String thumbnail, String infoimage, String introduce, int price,
+public Product(User userId, int num, String name, String thumbnail, String infoimage, String introduce, int price,
 		int dcprice, String brand, String keywd, String category, String freeyn, String link) {
 	super();
 	this.userId = userId;
@@ -117,8 +114,14 @@ public Product(Writer writer,String name, String thumbnail, String infoimage, St
 		this.avggrade = avggrade;
 	}
 
-	
-	public String getUserId() {
+//Delete 	
+	public Product(User userId, int productNum) {
+		super();
+		this.userId = userId;
+		ProductNum = productNum;
+	}
+
+	public User getUserId() {
 		return userId;
 	}
 
@@ -218,10 +221,21 @@ public Product(Writer writer,String name, String thumbnail, String infoimage, St
 	public void setDcprice(int dcprice) {
 		this.dcprice = dcprice;
 	}
+	public int getProductNum() {
+		return ProductNum;
+	}
+
+	public void setProductNum(int productNum) {
+		ProductNum = productNum;
+	}
+
+	public void setUserId(User userId) {
+		this.userId = userId;
+	}
 	public void validate(Map<String, Boolean> errors) {
 		if (name == null || name.trim().isEmpty()) {
 			errors.put("name", Boolean.TRUE);
 		}
-		
 	}
 }
+

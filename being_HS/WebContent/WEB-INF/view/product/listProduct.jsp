@@ -56,15 +56,15 @@
 	<tr>
 		<td colspan="4">
 			<c:if test="${productPage.startPage > 5}">
-			<a href="list.do?pageNo=${productPage.startPage - 5}">[이전]</a>
+			<a href="list.do?pageNum=${productPage.startPage - 5}">[이전]</a>
 			</c:if>
-			<c:forEach var="pNo" 
+			<c:forEach var="pNum" 
 					   begin="${productPage.startPage}" 
 					   end="${productPage.endPage}">
-			<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
+			<a href="list.do?pageNum=${pNum}">[${pNum}]</a>
 			</c:forEach>
 			<c:if test="${productPage.endPage < productPage.totalPages}">
-			<a href="list.do?pageNo=${productPage.startPage + 5}">[다음]</a>
+			<a href="list.do?pageNum=${productPage.startPage + 5}">[다음]</a>
 			</c:if>
 		</td>
 	</tr>

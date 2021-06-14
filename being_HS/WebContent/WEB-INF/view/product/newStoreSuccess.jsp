@@ -14,7 +14,7 @@
 
 <script>
    alert("스토리를 등록했습니다.");
-   location.href="read.do?no=${newProductNo}";
+   location.href="read.do?num=${newProductNum}";
 </script>
 
 </body>

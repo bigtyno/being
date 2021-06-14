@@ -44,8 +44,9 @@ public class ProductDao {
 				stmt = conn.createStatement();
 				rs = stmt.executeQuery("select max(NUM) from PROD_MNG");
 				if (rs.next()) {
-					Integer newNo = rs.getInt(1);
-					return new Product(newNo,
+					Integer newNum = rs.getInt(1);
+					return new Product(
+							newNum,
 							product.getName(),
 							product.getThumbnail(),
 							product.getInfoimage(),
@@ -127,13 +128,13 @@ public class ProductDao {
 
 	
 	
-	public Product selectById(Connection conn, int no) throws SQLException {
+	public Product selectById(Connection conn, int num) throws SQLException {
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement(
 					"select * from PROD_MNG where NUM = ?");
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, num);
 			rs = pstmt.executeQuery();
 			Product product = null;
 			if (rs.next()) {
@@ -146,7 +147,8 @@ public class ProductDao {
 		}
 	}
 	
-	public int update(Connection conn, int no, 
+	public int update(Connection conn, 
+			//int num, 
 			String name, 
 			String thumbnail,
 			String infoimage,
@@ -157,12 +159,14 @@ public class ProductDao {
 			String keywd,
 			String category,
 			String freeyn,
-			String link
+			String link,
+			int num
 			) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
 						"update PROD_MNG set NAME = ?,THUMBNAIL=?, INFOIMAGE=?, INTRODUCE =?, PRICE=?, DCPRICE=?,BRAND=?,KEYWD=?,CATEGORY=?,FREEYN=?,LINK=?,0 "+
 						"where NUM = ?")) {
+			
 			pstmt.setString(1, name);
 			pstmt.setString(2, thumbnail);
 			pstmt.setString(3, infoimage);
@@ -174,17 +178,17 @@ public class ProductDao {
 			pstmt.setString(9, category);
 			pstmt.setString(10, freeyn);
 			pstmt.setString(11, link);
-			pstmt.setInt(12, no);
+			pstmt.setInt(12,num);
 			return pstmt.executeUpdate();
 		}
 	}
 		
-	public int delete(Connection conn, int no) throws SQLException {
+	public int delete(Connection conn, int num) throws SQLException {
 		try (PreparedStatement pstmt = 
 				conn.prepareStatement(
 						"delete from PROD_MNG "+
 						"where NUM = ?")) {
-			pstmt.setInt(1, no);
+			pstmt.setInt(1, num);
 			return pstmt.executeUpdate();
 			}
 	}
