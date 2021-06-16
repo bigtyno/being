@@ -23,6 +23,7 @@ public class ModifyProductService {
 			
 			Product product = productDao.selectById(conn, 
 					modReq.getNum());
+			
 			if (product == null) {
 				throw new ProductNotFoundException();
 			}					
@@ -41,7 +42,7 @@ public class ModifyProductService {
 					modReq.getLink(),
 					modReq.getNum()
 					);
-			System.out.println(product);
+			
 			conn.commit();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);

@@ -45,6 +45,8 @@ public class ModifyProductHandler implements CommandHandler {
 			Product product = readService.getProduct(num);
 			
 			User authUser = (User) req.getSession().getAttribute("authUser");
+		
+			
 			if (!canModify(authUser)) {
 				res.sendError(HttpServletResponse.SC_FORBIDDEN);
 				return null;

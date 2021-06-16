@@ -148,7 +148,6 @@ public class ProductDao {
 	}
 	
 	public int update(Connection conn, 
-			//int num, 
 			String name, 
 			String thumbnail,
 			String infoimage,
