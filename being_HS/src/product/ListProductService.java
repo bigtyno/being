@@ -1,4 +1,4 @@
-package service;
+package product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,8 +6,6 @@ import java.util.List;
 
 import dao.ProductDao;
 import jdbc.connection.ConnectionProvider;
-import model.Product;
-import model.ProductPage;
 
 public class ListProductService {
 

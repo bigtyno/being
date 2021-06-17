@@ -38,11 +38,11 @@ public class StoreReviewDao {
 			pstmt.setInt(4, (int)storeReview.getGrade());
 			pstmt.setString(5, storeReview.getContent());
 			
-			System.out.println("id="+storeReview.getWriter().getId());
-			System.out.println("prodnum="+storeReview.getProdNum());
-			System.out.println("regidate="+toTimestamp(storeReview.getRegDate()));
-			System.out.println("grade="+storeReview.getGrade());
-			System.out.println("content="+storeReview.getContent());
+//			System.out.println("id="+storeReview.getWriter().getId());
+//			System.out.println("prodnum="+storeReview.getProdNum());
+//			System.out.println("regidate="+toTimestamp(storeReview.getRegDate()));
+//			System.out.println("grade="+storeReview.getGrade());
+//			System.out.println("content="+storeReview.getContent());
 			
 			int insertedCount = pstmt.executeUpdate();
 			
@@ -120,8 +120,8 @@ public class StoreReviewDao {
 		ResultSet rs = null;
 		try {
 			pstmt = conn.prepareStatement("SELECT * FROM ("
-					+ "        SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*"
-					+ "          FROM PROD_COMT A ORDER BY NUM)"
+					+ "        SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*, B.NAME "
+					+ "          FROM PROD_COMT A, MEMBERS B WHERE A.EMAIL = B.EMAIL ORDER BY NUM)"
 					+ " WHERE RNUM BETWEEN ? AND ?"
 					);
 			pstmt.setInt(1, startRow);
@@ -129,6 +129,7 @@ public class StoreReviewDao {
 			rs = pstmt.executeQuery();
 			List<StoreReview> result = new ArrayList<>();
 			while (rs.next()) {
+				
 				result.add(convertStoreReview(rs));
 			}
 			return result;
@@ -159,9 +160,9 @@ public class StoreReviewDao {
 		try {
 			pstmt = conn.prepareStatement(
 //					"select * from PROD_COMT where NUM = ?"
-					"select PC.*, M.NAME from PROD_COMT PC, MEMBERS M"
-					+ "where PC.NUM = ?"
-					+ "AND PC.EMAIL = M.EMAIL"
+					"select PC.*, M.NAME from PROD_COMT PC, MEMBERS M "
+					+ "where PC.NUM = ? "
+					+ "AND PC.EMAIL = M.EMAIL "
 					);
 			pstmt.setInt(1, no);
 			rs = pstmt.executeQuery();
@@ -173,6 +174,23 @@ public class StoreReviewDao {
 		} finally {
 			JdbcUtil.close(rs);
 			JdbcUtil.close(pstmt);
+		}
+	}
+	public double selectAvg(Connection conn, int no) throws SQLException {
+		Statement stmt = null;
+		ResultSet rs = null;
+		System.out.println(no);
+		try {
+			stmt = conn.createStatement();
+			rs = stmt.executeQuery("SELECT AVG(GRADE) from PROD_COMT WHERE PRODNUM = "+ no);
+			if (rs.next()) {
+				System.out.println(rs.getDouble(1));
+				return rs.getDouble(1);
+			}
+			return 0.0;
+		} finally {
+			JdbcUtil.close(rs);
+			JdbcUtil.close(stmt);
 		}
 	}
 	

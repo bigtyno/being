@@ -3,9 +3,9 @@ package auth.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+import dao.MemberDao;
 import jdbc.connection.ConnectionProvider;
-import member.dao.MemberDao;
-import member.model.Member;
+import model.Member;
 
 public class LoginService {
 

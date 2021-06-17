@@ -1,24 +1,22 @@
-package store.service;
+package interiorAsk;
 
 import java.util.List;
 
-import store.model.StoreReview;
+import interiorAsk.InteriorAsk;
 
-public class StoreReviewPage {
+public class InteriorAskPage {
 
 	private int total;
 	private int currentPage;
-	private List<StoreReview> content;
+	private List<InteriorAsk> content;
 	private int totalPages;
 	private int startPage;
 	private int endPage;
-	private double avgGrade;
-	
-	public StoreReviewPage(int total, int currentPage, int size, List<StoreReview> content, double avgGrade) {
+
+	public InteriorAskPage(int total, int currentPage, int size, List<InteriorAsk> content) {
 		this.total = total;
 		this.currentPage = currentPage;
 		this.content = content;
-		this.avgGrade = avgGrade;
 		if (total == 0) {
 			totalPages = 0;
 			startPage = 0;
@@ -41,11 +39,11 @@ public class StoreReviewPage {
 		return total;
 	}
 
-	public boolean hasNoStores() {
+	public boolean hasNoInteriorAsk() {
 		return total == 0;
 	}
 
-	public boolean hasStores() {
+	public boolean hasInteriorAsk() {
 		return total > 0;
 	}
 	
@@ -57,7 +55,7 @@ public class StoreReviewPage {
 		return totalPages;
 	}
 
-	public List<StoreReview> getContent() {
+	public List<InteriorAsk> getContent() {
 		return content;
 	}
 
@@ -67,13 +65,5 @@ public class StoreReviewPage {
 	
 	public int getEndPage() {
 		return endPage;
-	}
-
-	public double getAvgGrade() {
-		return avgGrade;
-	}
-
-	public void setAvgGrade(double avgGrade) {
-		this.avgGrade = avgGrade;
 	}
 }

@@ -1,4 +1,4 @@
-package handler;
+package product;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -12,11 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import article.service.ArticleNotFoundException;
 import article.service.PermissionDeniedException;
 import auth.service.User;
-import service.ModifyProductService;
-import model.Product;
 import mvc.command.CommandHandler;
 import service.ProductNotFoundException;
-import service.ReadProductService;
 
 public class ModifyProductHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/product/modifyProductForm.jsp";

@@ -28,22 +28,14 @@ public class StoreReviewService {
 			conn.setAutoCommit(false);
 
 			StoreReview storeReview = toStoreReview(req);
-//			storeDao.insert(conn, store);
 			
 			StoreReview savedstore  = storeReviewDao.insert(conn, storeReview);
-//			System.out.println("article insert 성공....");
 
 			if (savedstore == null) {
 				throw new RuntimeException("fail to insert Store");
 			}
-//			ArticleContent content = new ArticleContent(savedArticle.getNumber(), req.getContent());
-//			ArticleContent savedContent = contentDao.insert(conn, content);
-//			if (savedContent == null) {
-//				throw new RuntimeException("fail to insert article_content");
-//			}
 
 			conn.commit();
-//			return 1;
 			return savedstore.getProdNum();
 		} catch (SQLException e) {
 			JdbcUtil.rollback(conn);

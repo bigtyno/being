@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import article.model.Writer;
 import jdbc.JdbcUtil;
-import model.Product;
+import product.Product;
 
 public class ProductDao {
 	public Product insert(Connection conn, Product product) throws SQLException {

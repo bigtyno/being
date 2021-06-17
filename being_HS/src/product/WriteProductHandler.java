@@ -1,4 +1,4 @@
-package handler;
+package product;
 
 import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import article.model.Writer;
 import auth.service.User;
-import model.Product;
 import mvc.command.CommandHandler;
-import service.WriteProductService;
 
 public class WriteProductHandler implements CommandHandler {
 	

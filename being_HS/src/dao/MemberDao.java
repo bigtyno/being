@@ -1,4 +1,4 @@
-package member.dao;
+package dao;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +8,7 @@ import java.sql.Timestamp;
 import java.util.Date;
 
 import jdbc.JdbcUtil;
-import member.model.Member;
+import model.Member;
 
 public class MemberDao {
 

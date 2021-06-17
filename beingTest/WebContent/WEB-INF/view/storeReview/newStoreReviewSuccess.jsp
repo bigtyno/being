@@ -15,6 +15,7 @@
 <script>
    alert("상품평을 등록했습니다.");
    location.href="${pageContext.request.contextPath}/store/read.do?no=${newStoreReviewNo}";
+//  	  location.href="list.do";
 </script>
 
 </body>

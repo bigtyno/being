@@ -1,15 +1,11 @@
-package handler;
+package product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import article.service.ArticleNotFoundException;
 import article.service.PermissionDeniedException;
 import auth.service.User;
-import model.Product;
 import mvc.command.CommandHandler;
-import service.DeleteProductService;
-import service.ModifyProductService;
-import service.ReadProductService;
 
 public class DeleteProductHandler implements CommandHandler {
 	//private static final String FORM_VIEW = "/WEB-INF/view/board/listArticle.jsp";

@@ -19,6 +19,7 @@ public class ListArticleHandler implements CommandHandler {
 		if (pageNoVal != null) {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
+		
 		ArticlePage articlePage = listService.getArticlePage(pageNo);
 		req.setAttribute("articlePage", articlePage);
 		return "/WEB-INF/view/board/listArticle.jsp";

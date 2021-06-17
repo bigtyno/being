@@ -6,8 +6,8 @@ import article.model.Writer;
 
 public class StoreReview {
 	
-	private Integer num;
 	private Writer writer;
+	private Integer num;
 	private Integer prodNum;
 	private Date regDate;
 	private Integer grade;	

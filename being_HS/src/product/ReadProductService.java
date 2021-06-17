@@ -1,11 +1,10 @@
-package service;
+package product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
 
 import dao.ProductDao;
 import jdbc.connection.ConnectionProvider;
-import model.Product;
 
 public class ReadProductService {
 

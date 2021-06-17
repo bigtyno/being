@@ -1,11 +1,9 @@
-package handler;
+package product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.ProductPage;
 import mvc.command.CommandHandler;
-import service.ListProductService;
 
 public class ListProductHandler implements CommandHandler {
 

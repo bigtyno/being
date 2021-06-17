@@ -1,4 +1,4 @@
-package service;
+package product;
 
 import java.sql.Connection;
 import java.sql.SQLException;
@@ -6,7 +6,6 @@ import article.service.PermissionDeniedException;
 import dao.ProductDao;
 import jdbc.JdbcUtil;
 import jdbc.connection.ConnectionProvider;
-import model.Product;
 
 public class DeleteProductService {
 

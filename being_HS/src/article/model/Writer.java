@@ -13,6 +13,12 @@ public class Writer {
 		this.lvl = lvl;
 	}
 
+	public Writer(String id, String name) {
+		super();
+		this.id = id;
+		this.name = name;
+	}
+
 	public String getId() {
 		return id;
 	}

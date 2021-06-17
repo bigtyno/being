@@ -3,11 +3,6 @@ package store.service;
 import java.sql.Connection;
 import java.sql.SQLException;
 
-//import article.dao.ArticleContentDao;
-import article.dao.ArticleDao;
-import article.model.Article;
-import article.service.ArticleData;
-//import article.model.ArticleContent;
 import jdbc.connection.ConnectionProvider;
 import store.dao.StoreDao;
 import store.model.Store;

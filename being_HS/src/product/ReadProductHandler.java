@@ -1,12 +1,10 @@
-package handler;
+package product;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import model.Product;
 import mvc.command.CommandHandler;
 import service.ProductNotFoundException;
-import service.ReadProductService;
 
 public class ReadProductHandler implements CommandHandler {
 

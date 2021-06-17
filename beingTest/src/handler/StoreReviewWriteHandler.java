@@ -22,6 +22,7 @@ import store.service.StoreReviewWriteRequest;
 
 public class StoreReviewWriteHandler implements CommandHandler {
 	private static final String FORM_VIEW = "/WEB-INF/view/storeReview/newStoreReviewForm.jsp";
+	
 	private StoreReviewService storeReviewService = new StoreReviewService();
 	private ReadStoreService readService = new ReadStoreService();
 	
@@ -40,8 +41,8 @@ public class StoreReviewWriteHandler implements CommandHandler {
 	private String processForm(HttpServletRequest req, HttpServletResponse res) {
 		String noVal = req.getParameter("no");
 		int no = Integer.parseInt(noVal);
-		StoreData storeData = readService.getStore(no, false);
 		
+		StoreData storeData = readService.getStore(no, false);
 		StoreReviewWriteRequest storeReq = new StoreReviewWriteRequest(
 				storeData.getStore().getNum());
 		
@@ -58,17 +59,11 @@ public class StoreReviewWriteHandler implements CommandHandler {
 		try {
 	         req.setCharacterEncoding("UTF-8");
 	      } catch (UnsupportedEncodingException e1) {
-	         // TODO Auto-generated catch block
 	         e1.printStackTrace();
 	      }
 		
 		User user = (User)req.getSession(false).getAttribute("authUser");
-//		System.out.println("user="+user);
-//		System.out.println("user.id="+user.getId());
-//		System.out.println("user.name="+user.getName());
-//		WriteRequest writeReq = createWriteRequest(user, req);
-//		writeReq.validate(errors);
-		
+
 		StoreReviewWriteRequest storeReviewWriteReq = createStoreReviewWriteRequest(user, req);
 		storeReviewWriteReq.validate(errors);
 		

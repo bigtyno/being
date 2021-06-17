@@ -20,6 +20,7 @@ public class ListInteriorHandler implements CommandHandler {
 			pageNo = Integer.parseInt(pageNoVal);
 		}
 		InteriorPage interiorPage = listService.getInteriorPage(pageNo);
+		System.out.println(interiorPage.getContent().get(0));
 		req.setAttribute("interiorPage", interiorPage);
 		return "/WEB-INF/view/interior/listInterior.jsp";
 	}
