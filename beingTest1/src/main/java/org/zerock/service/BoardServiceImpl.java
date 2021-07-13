@@ -2,21 +2,67 @@ package org.zerock.service;
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.inject.Inject;
+
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.BoardVO;
-import org.zerock.mapper.BoardMapper;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.SearchCriteria;
+import org.zerock.persistence.BoardDAO;
 
 @Service
 public class BoardServiceImpl implements BoardService {
-	@Autowired
-	private BoardMapper boardMapper;
 
-	@Override
-	@Transactional
-	public List<BoardVO> selectBoardList() throws Exception {
-		return boardMapper.selectBoardList();
-	}
+  @Inject
+  private BoardDAO dao;
+
+  @Override
+  public void regist(BoardVO board) throws Exception {
+    dao.create(board);
+  }
+
+  @Override
+  public BoardVO read(Integer num) throws Exception {
+    return dao.read(num);
+  }
+
+  @Override
+  public void modify(BoardVO board) throws Exception {
+    dao.update(board);
+  }
+
+  @Override
+  public void remove(Integer num) throws Exception {
+    dao.delete(num);
+  }
+
+  @Override
+  public List<BoardVO> listAll() throws Exception {
+    return dao.listAll();
+  }
+
+  @Override
+  public List<BoardVO> listCriteria(Criteria cri) throws Exception {
+
+    return dao.listCriteria(cri);
+  }
+
+  @Override
+  public int listCountCriteria(Criteria cri) throws Exception {
+
+    return dao.countPaging(cri);
+  }
+
+  @Override
+  public List<BoardVO> listSearchCriteria(SearchCriteria cri) throws Exception {
+
+    return dao.listSearch(cri);
+  }
+
+  @Override
+  public int listSearchCount(SearchCriteria cri) throws Exception {
+
+    return dao.listSearchCount(cri);
+  }
 
 }

@@ -20,7 +20,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>Being</title>
+	<title>게시물 읽기</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 	<!--
@@ -37,66 +37,121 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/read.css">
 </head>
 
 <body>
 	 <%@ include file="../include/header.jspf" %>
-
-
-
-
-<div class="board-list">	
-<c:if test="${articlePage.hasNoArticles()}">
-	<tr>
-		<td colspan="4">게시글이 없습니다.</td>
-	</tr>
-</c:if>
-<c:forEach var="article" items="${articlePage.content}">
-<div>
-	<ul><li>
-	<a href="read.do?no=${article.number}&pageNo=${articlePage.currentPage}">
-	<img src="${pageContext.request.contextPath}/resources/img/story2.png" width="300px" height="300px" alt="" />
-	<c:out value="${article.title}"/>
-		
-		<span><p>${article.writer.name} </p>
-		
-		<p> 조회수: ${article.readCount}</p></span>
-		</a>
-		</li></ul></div>
 	
-</c:forEach>
+	
+	
+	   <!-- readArticle-->
+	   <!--  썸네일 -->
+	    <div class="everything">
+<li><a href="#"><img src="${pageContext.request.contextPath}/resources/img/story1.png" width="1500px" height="400px" style="border-radius: 7px;"></a></li>
+	</div>
+	   </div>
 
-<u:isGeneral>
-<p class="writebtn">
-<a class="btn" href="write.do">스토리 올리기</a>
-</p>
-</u:isGeneral>
+					<form role="form" method="post">	
 
-<table class="listbtn">
-<c:if test="${articlePage.hasArticles()}">
-	<tr>	
-		<td colspan="4">
-			<c:if test="${articlePage.startPage > 5}">
-			<a href="list.do?pageNo=${articlePage.startPage - 5}">[이전]</a>
+						<input type='hidden' name='num' value="${boardVO.num}">
+
+					</form>
+
+	<div class="everthing2">
+	<!-- 제목 -->
+	<h1 class="title"><c:out value='${boardVO.title}' /></h1>
+	
+	<!-- 작성자 -->
+	<h3 class="writer">${writerVO.name}</h3>
+
+		
+		
+		
+<div id="content">
+		<div class="category">
+			<div class="category-center">
+			<li><img class="img1"
+				src="${pageContext.request.contextPath}/resources/img/house.png"
+				width="30px" height="30px" style="border-radius: 7px;"></li>
+				<div class="category-name">주거형태</div>
+			<div class="value">
+				<u:pre value='${boardVO.type}' />
+			</div>
+
 			
-			</c:if>
-			<c:forEach var="pNo" 
-					   begin="${articlePage.startPage}" 
-					   end="${articlePage.endPage}">
-			<a href="list.do?pageNo=${pNo}">[${pNo}]</a>
-			</c:forEach>
-			<c:if test="${articlePage.endPage < articlePage.totalPages}">
-			<a href="list.do?pageNo=${articlePage.startPage + 5}">[다음]</a>
-			</c:if>
-		</td>
-	</tr>
-</c:if>
-</table>
+				<li><img class="img2"
+					src="${pageContext.request.contextPath}/resources/img/area.png"
+					width="30px" height="30px" style="border-radius: 7px;"></li>
+					<div class="category-name">평수</div>
+
+				<div class="value">
+					<u:pre value='${boardVO.acreage}' />
+				</div>
+
+
+				<li><img class="img3"
+					src="${pageContext.request.contextPath}/resources/img/budget.png"
+					width="30px" height="30px" style="border-radius: 7px;"></li>
+					<div class="category-name">예산</div>
+					
+				<div class="value">
+					<u:pre value='${boardVO.budget}' />
+				</div>
+				
+
+				<li><img class="img4"
+					src="${pageContext.request.contextPath}/resources/img/noticeboard.png"
+					width="30px" height="30px" style="border-radius: 7px;"></li>
+					<div class="category-name">분야</div>
+					
+				<div class="value">
+					<u:pre value='${boardVO.field}' />
+				</div>
+				
+
+				<li><img class="img5"
+					src="${pageContext.request.contextPath}/resources/img/room.png"
+					width="30px" height="30px" style="border-radius: 7px;"></li>
+					<div class="category-name">공간별</div>
+					
+				<div class="value">
+					<u:pre value='${boardVO.space}' />
+					</div>
+				</div>
+				
+
+			</div>
+
 </div>
 
+		<!-- 내용 -->
+			<h1 class="content">
+				<u:pre value='${boardVO.contentOf}' />
+			</h1>
+
+
+			<!-- 목록 -->
+			<div class="list">
+				<td colspan="2"><c:set var="pageNo"
+						value="${empty param.pageNo ? '1' : param.pageNo}" />
+						<a class="btn" href="list.do?pageNo=${pageNo}">목록</a>
+						<u:isAdmin>
+						<a class="btn" href="delete.do?no=${boardVO.num}">게시글 삭제</a>
+						</u:isAdmin>
+						<c:if test="${authUser.id == writerVO.id}">
+						<a class="btn" href="modify.do?no=${boardVO.num}">게시글 수정</a>
+						<a class="btn" href="delete.do?no=${boardVO.num}">게시글 삭제</a>
+					</c:if></td>
+			</div>
+
+
+		</div>
 	
-<%@ include file="../include/footer.jspf" %>
+
+
+
+		<%@ include file="../include/footer.jspf" %>
 
 	<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

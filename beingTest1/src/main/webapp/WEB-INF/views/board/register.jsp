@@ -30,7 +30,7 @@
 
 <p class="box-title">스토리 등록하기</p>
 <div class="box">
-<form action="write.do" method="post">
+<form role="form" method="post">
 
 
 <div class="regist-box">
@@ -114,7 +114,7 @@
 </div>
 <div class=content>
 <p>내용
-	<input type="text" name="content" ${param.content} placeholder="내용을 입력하세요">
+	<input type="text" name="contentOf" ${param.contentOf} placeholder="내용을 입력하세요">
 </p>
 </div>
 </div>

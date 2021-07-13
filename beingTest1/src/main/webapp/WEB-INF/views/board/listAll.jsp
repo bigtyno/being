@@ -20,7 +20,7 @@
 	<!-- meta character set -->
 	<meta charset="UTF-8">
 	<!-- Site Title -->
-	<title>게시물 읽기</title>
+	<title>Being</title>
 
 	<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet">
 	<!--
@@ -37,113 +37,52 @@
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/animate.min.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/owl.carousel.css">
 	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/main.css">
-	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/read.css">
+	<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/list.css">
 </head>
 
 <body>
 	 <%@ include file="../include/header.jspf" %>
+
+
+
+
+<div class="board-list">	
+<c:if test="${articlePage.hasNoArticles()}">
+	<tr>
+		<td colspan="4">게시글이 없습니다.</td>
+	</tr>
+</c:if>
+<c:forEach var="boardVO" items="${list}">
+<div>
+	<ul><li>
+	<a href='/borad/read.do?no=${boardVO.num}'>
+	<img src="${pageContext.request.contextPath}/resources/img/story2.png" width="300px" height="300px" alt="" />
+	<c:out value="${boardVO.title}"/>
+		
+		<span><p>${writerVO.name} </p>
+		
+		<p> 조회수: ${boardVO.type}</p>
+		<p> 조회수: ${boardVO.acreage}</p>
+		<p> 조회수: ${boardVO.budget}</p>
+		<p> 조회수: ${boardVO.field}</p>
+		<p> 조회수: ${boardVO.space}</p>
+		<p> 조회수: ${boardVO.contentOf}</p>
+		</span>
+		</a>
+		</li></ul></div>
 	
-	
-	
-	   <!-- readArticle-->
-	   <!--  썸네일 -->
-	    <div class="everything">
-<li><a href="#"><img src="${pageContext.request.contextPath}/resources/img/story1.png" width="1500px" height="400px" style="border-radius: 7px;"></a></li>
-	</div>
-	   </div>
+</c:forEach>
 
-	<div class="everthing2">
-	<!-- 제목 -->
-	<h1 class="title"><c:out value='${articleData.article.title}' /></h1>
-	
-	<!-- 작성자 -->
-	<h3 class="writer">${articleData.article.writer.name}</h3>
-
-
-<div id="content">
-		<div class="category">
-			<div class="category-center">
-			<li><img class="img1"
-				src="${pageContext.request.contextPath}/resources/img/house.png"
-				width="30px" height="30px" style="border-radius: 7px;"></li>
-				<div class="category-name">주거형태</div>
-			<div class="value">
-				<u:pre value='${articleData.article.type}' />
-			</div>
-
-			
-				<li><img class="img2"
-					src="${pageContext.request.contextPath}/resources/img/area.png"
-					width="30px" height="30px" style="border-radius: 7px;"></li>
-					<div class="category-name">평수</div>
-
-				<div class="value">
-					<u:pre value='${articleData.article.acreage}' />
-				</div>
-
-
-				<li><img class="img3"
-					src="${pageContext.request.contextPath}/resources/img/budget.png"
-					width="30px" height="30px" style="border-radius: 7px;"></li>
-					<div class="category-name">예산</div>
-					
-				<div class="value">
-					<u:pre value='${articleData.article.budget}' />
-				</div>
-				
-
-				<li><img class="img4"
-					src="${pageContext.request.contextPath}/resources/img/noticeboard.png"
-					width="30px" height="30px" style="border-radius: 7px;"></li>
-					<div class="category-name">분야</div>
-					
-				<div class="value">
-					<u:pre value='${articleData.article.field}' />
-				</div>
-				
-
-				<li><img class="img5"
-					src="${pageContext.request.contextPath}/resources/img/room.png"
-					width="30px" height="30px" style="border-radius: 7px;"></li>
-					<div class="category-name">공간별</div>
-					
-				<div class="value">
-					<u:pre value='${articleData.article.space}' />
-					</div>
-				</div>
-				
-
-			</div>
+<u:isGeneral>
+<p class="writebtn">
+<a class="btn" href="write.do">스토리 올리기</a>
+</p>
+</u:isGeneral>
 
 </div>
 
-		<!-- 내용 -->
-			<h1 class="content">
-				<u:pre value='${articleData.article.content}' />
-			</h1>
-
-
-			<!-- 목록 -->
-			<div class="list">
-				<td colspan="2"><c:set var="pageNo"
-						value="${empty param.pageNo ? '1' : param.pageNo}" />
-						<a class="btn" href="list.do?pageNo=${pageNo}">목록</a>
-						<u:isAdmin>
-						<a class="btn" href="delete.do?no=${articleData.article.number}">게시글 삭제</a>
-						</u:isAdmin>
-						<c:if test="${authUser.id == articleData.article.writer.id}">
-						<a class="btn" href="modify.do?no=${articleData.article.number}">게시글 수정</a>
-						<a class="btn" href="delete.do?no=${articleData.article.number}">게시글 삭제</a>
-					</c:if></td>
-			</div>
-
-
-		</div>
 	
-
-
-
-		<%@ include file="../include/footer.jspf" %>
+<%@ include file="../include/footer.jspf" %>
 
 	<script src="${pageContext.request.contextPath}/resources/js/vendor/jquery.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"

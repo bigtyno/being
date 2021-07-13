@@ -8,15 +8,15 @@ public class BoardVO {
 	
 	private WriterVO writerVO;
 	private Integer num;
-
 	private String type;
 	private String acreage;
 	private String budget;
 	private String field;
 	private String space;
 	private String title;
-	private String contentof;
+	private String contentOf;
 	private Date registday;
+	private Integer readcount;
 	
 	public BoardVO() {
 		super();
@@ -42,10 +42,10 @@ public class BoardVO {
 		this.title = title;
 	}
 	public String getContentOf() {
-		return contentof;
+		return contentOf;
 	}
-	public void setContentOf(String contentof) {
-		this.contentof = contentof;
+	public void setContentOf(String contentOf) {
+		this.contentOf = contentOf;
 	}
 	public String getEmail() {
 		return this.writerVO.getId();
@@ -83,12 +83,6 @@ public class BoardVO {
 	public void setSpace(String space) {
 		this.space = space;
 	}
-	public String getContentof() {
-		return contentof;
-	}
-	public void setContentof(String contentof) {
-		this.contentof = contentof;
-	}
 	public Date getRegistday() {
 		return registday;
 	}
@@ -96,12 +90,21 @@ public class BoardVO {
 		this.registday = registday;
 	}
 
+	public Integer getReadcount() {
+		return readcount;
+	}
+
+	public void setReadcount(Integer readcount) {
+		this.readcount = readcount;
+	}
+
 	@Override
 	public String toString() {
 		return "BoardVO [writerVO=" + writerVO + ", num=" + num + ", type=" + type + ", acreage=" + acreage
-				+ ", budget=" + budget + ", field=" + field + ", space=" + space + ", title=" + title + ", contentof="
-				+ contentof + ", registday=" + registday + "]";
+				+ ", budget=" + budget + ", field=" + field + ", space=" + space + ", title=" + title + ", contentOf="
+				+ contentOf + ", registday=" + registday + ", readcount=" + readcount + "]";
 	}
+
 	
 
 }
