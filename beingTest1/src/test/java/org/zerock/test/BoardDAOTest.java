@@ -27,15 +27,15 @@ public class BoardDAOTest {
 	private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
 	
-	  @Test public void testCreate() throws Exception {
+	  //@Test public void testCreate() throws Exception {
 	 
-	  BoardVO board = new BoardVO(); 
-	  board.setTitle("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. ");
-	  board.setContent("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. ");
-	  board.setWriter("user00");
-	  dao.create(board); }
+		/*
+		 * BoardVO board = new BoardVO(); board.setTitle("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. ");
+		 * board.setContent("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. "); board.setWriter("user00");
+		 * dao.create(board); }
+		 */
 	
-	@Test
+	//@Test
 	public void testRead() throws Exception {
 
 		logger.info(dao.read(1).toString());
@@ -62,7 +62,7 @@ public class BoardDAOTest {
 		dao.delete(1);
 	}
 
-	//@Test
+	@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
