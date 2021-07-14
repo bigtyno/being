@@ -27,13 +27,19 @@ public class BoardDAOTest {
 	private static Logger logger = LoggerFactory.getLogger(BoardDAOTest.class);
 
 	
-	  //@Test public void testCreate() throws Exception {
-	 
-		/*
-		 * BoardVO board = new BoardVO(); board.setTitle("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. ");
-		 * board.setContent("�깉濡쒖슫 湲��쓣 �꽔�뒿�땲�떎. "); board.setWriter("user00");
-		 * dao.create(board); }
-		 */
+	 // @Test
+	
+	public void testCreate() throws Exception {
+		  BoardVO board = new BoardVO();
+		  board.setType("테스트");
+		  board.setAcreage("테스트");
+		  board.setBudget("테스트");
+		  board.setField("테스트");
+		  board.setSpace("테스트");
+		  board.setContentOf("테스트");
+		  dao.create(board); 
+		  }
+		 
 	
 	//@Test
 	public void testRead() throws Exception {
@@ -45,7 +51,7 @@ public class BoardDAOTest {
 	public void testUpdate() throws Exception {
 
 		BoardVO board = new BoardVO();
-		board.setNum(1);
+		board.setNum(6);
 		board.setType("소파");
 		board.setAcreage("JJ");
 		board.setBudget("1000만원");
@@ -62,17 +68,17 @@ public class BoardDAOTest {
 		dao.delete(1);
 	}
 
-	@Test
+	//@Test
 	public void testListAll() throws Exception {
 
 		logger.info(dao.listAll().toString());
 
 	}
 
-	//@Test
+	@Test
 	public void testListPage() throws Exception {
 
-		int page = 3;
+		int page = 2;
 
 		List<BoardVO> list = dao.listPage(page);
 
