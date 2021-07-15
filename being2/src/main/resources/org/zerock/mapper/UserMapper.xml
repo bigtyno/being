@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.UserMapper">
+	<select id="login" resultType="org.zerock.domain.UserVO">
+		select email, password, name from members where email = #{email} and password = #{password}
+	</select>
+
+	<update id="keepLogin">
+		update members set sessionKey = #{sessionId}, sessionLimit = #{next} where
+		email = #{email}
+	</update>
+	<select id="checkUserWithSessionKey" resultType="org.zerock.domain.UserVO">
+		select * from members where sessionKey = #{value} and sessionLimit > now()
+	</select>
+</mapper>
