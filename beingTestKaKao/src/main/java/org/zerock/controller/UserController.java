@@ -46,8 +46,8 @@ public class UserController {
    @Inject
    private UserService service;
 
-   private final static String id ="d31e8bec18195625a37e0ff70e60e749";
-   private final static String url ="http://localhost:8080/being/KaKaoLogin";
+  // private final static String id ="d31e8bec18195625a37e0ff70e60e749";
+  // private final static String url ="http://localhost:8080/being/KaKaoLogin";
 
    @RequestMapping(value = "/loginForm", method = RequestMethod.GET)
    public void loginGET(@ModelAttribute("dto") LoginDTO dto) {
@@ -84,10 +84,18 @@ public class UserController {
    @RequestMapping(value = "/logout", method = RequestMethod.GET)
    public String logout(HttpServletRequest request, HttpServletResponse response, HttpSession session)
          throws Exception {
+	  String access_token = session.getAttribute("access_token").toString();
+	  System.out.println(access_token);
+	  
+     //카카오톡 로그아웃
+      int responseCode = kakaoLogout(access_token);
+      // if responseCode != 200 then kakao did not log out user.
+      
       Object obj = session.getAttribute("login");
       if (obj != null) {
          UserVO vo = (UserVO) obj;
          session.removeAttribute("login");
+         session.removeAttribute("access_token");
          session.invalidate();
          Cookie loginCookie = WebUtils.getCookie(request, "loginCookie");
          if (loginCookie != null) {
@@ -97,7 +105,8 @@ public class UserController {
             service.keepLogin(vo.getEmail(), session.getId(), new Date());
          }
       }
-
+          
+      
       return "user/logout";
    }
    
@@ -167,7 +176,7 @@ public class UserController {
    
 	   public static JsonNode getKakaoUserInfo(String access_token) { 
 			
-		   final String RequestUrl = "https://kapi.kakao.com/v2/user/me"; 
+		    final String RequestUrl = "https://kapi.kakao.com/v2/user/me"; 
 			final HttpClient client = HttpClientBuilder.create().build(); 
 			final HttpPost post = new HttpPost(RequestUrl); 
 			String accessToken = access_token;
@@ -189,7 +198,39 @@ public class UserController {
 				// clear resources 
 				} return returnNode; 
 			}
-	 
+	   
+	  
+	   public int kakaoLogout(String access_token) {
+	        
+		    final String RequestUrl = "https://kapi.kakao.com/v1/user/logout";
+	        final HttpClient client = HttpClientBuilder.create().build(); 
+			final HttpPost post = new HttpPost(RequestUrl); 
+			String accessToken = access_token;
+			int responseCode = 0;
+			
+			post.addHeader("Authorization", "Bearer " + accessToken); 
+			JsonNode returnNode = null; 
+			
+			try { 
+				final HttpResponse response = client.execute(post); 
+				responseCode = response.getStatusLine().getStatusCode();
+				System.out.println("\nSending 'POST' request to URL : " + RequestUrl);
+	            System.out.println("Response Code : " + responseCode);
+			} catch (UnsupportedEncodingException e){
+				e.printStackTrace();
+			} catch (ClientProtocolException e) {
+				e.printStackTrace();
+			} catch(IOException e) {
+				e.printStackTrace();
+			} finally {
+				
+			}
+			
+			return responseCode;
+			
+	   }
+	   
+	   
 	   @RequestMapping(value = "/KaKaoLogin", method = RequestMethod.GET)
 	   public String kakaologin(@RequestParam("code") String code, HttpSession session, Model model)throws Exception{
 		   JsonNode jsonToken = getAccessToken(code);
@@ -219,6 +260,7 @@ public class UserController {
 		   
 		   System.out.println(vo);
 		   session.setAttribute("login", vo);
+		   session.setAttribute("access_token", access_token);
 		  
 		   System.out.println(id+nickName);
 		   
@@ -228,30 +270,5 @@ public class UserController {
 		   return "redirect:/index";
 		   
 	  }
-	   
-		/*
-		 * @RequestMapping(value = "/being/KaKaoLogin", method = RequestMethod.GET)
-		 * public String kakaologin(@RequestParam("code") String code ,
-		 * HttpServletRequest request, HttpServletResponse response, HttpSession
-		 * session)throws Exception{
-		 * 
-		 * JsonNode jsonToken = getAccessToken(code); String access_token =
-		 * jsonToken.get("access_token ").toString(); JsonNode userInfo =
-		 * getKakaoUserInfo(access_token ); String id = userInfo.get("id").toString();
-		 * String nickName = userInfo.get("properties").get("nickname").toString();
-		 * session.setAttribute("userid", nickName); System.out.println(id+nickName);
-		 * 
-		 * UserVO userVO = new UserVO();
-		 * 
-		 * userVO.setEmail()
-		 * 
-		 * 
-		 * UserVO userVO = service.kakaoLogin(userVO); if (userVO == null) { return "";
-		 * // 카카오톡 회원가입 } else (userVO != null){
-		 * 
-		 * }
-		 * 
-		 * return "redirect:/index"; }
-		 */
 	   
 }
