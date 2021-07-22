@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.BoardMapper">
+
+	<insert id="create">
+		INSERT INTO WRITING
+		(NUM,EMAIL,TYPE,ACREAGE,BUDGET,FIELD,SPACE,TITLE,CONTENTOF,REGISTDAY,NAME,READCOUNT)
+		values(WRITING_SEQ.nextval,#{email},
+		#{type},#{acreage},#{budget},#{field},#{space},#{title},#{contentOf},SYSDATE,#{name},0)
+	</insert>
+
+	<!-- id 속성은 DAO 의 메소드와 같아야 한다. 여기의 boardVO 는 mybatis-confg.xml 에 Alias 되어 
+		있습니다. -->
+	  <select id="read" resultType="org.zerock.domain.BoardVO">
+       SELECT NUM
+      , EMAIL
+      , NAME
+      , TYPE
+      , ACREAGE
+      , BUDGET
+      , FIELD
+      , SPACE
+      , TITLE
+      , CONTENTOF
+      , REGISTDAY
+      FROM WRITING 
+       WHERE NUM = #{num}
+    </select>
+	 
+	  <update id="update">
+       UPDATE WRITING SET 
+       TYPE=#{type}
+       ,ACREAGE=#{acreage}
+       ,BUDGET=#{budget}
+       ,FIELD=#{field}
+       ,SPACE=#{space}
+       ,TITLE=#{title}
+       ,CONTENTOF=#{contentOf}
+       WHERE NUM = #{num}
+    </update>
+    
+     <delete id="delete">
+      delete from WRITING where NUM = #{num}
+      </delete>
+	 	
+	<select id="selectBoardList"
+		resultType="org.zerock.domain.BoardVO">
+		SELECT NUM
+		, EMAIL
+		, NAME
+		, TYPE
+		, ACREAGE
+		, BUDGET
+		, FIELD
+		, SPACE
+		, TITLE
+		, CONTENTOF
+		, REGISTDAY
+		FROM WRITING
+		ORDER BY NUM DESC
+	</select>
+
+	<select id="selectBoardList2"
+		resultType="org.zerock.domain.BoardVO">
+		SELECT NUM
+		, EMAIL
+		, NAME
+		, TYPE
+		, ACREAGE
+		, BUDGET
+		, FIELD
+		, SPACE
+		, TITLE
+		, CONTENTOF
+		, REGISTDAY
+		FROM WRITING
+		WHERE NUM=2
+		ORDER BY NUM
+		DESC
+	</select>
+	
+		<select id="listPage" 
+		resultType="org.zerock.domain.BoardVO">
+ <![CDATA[
+ SELECT RNUM, NUM
+		, EMAIL
+		, NAME
+		, TYPE
+		, ACREAGE
+		, BUDGET
+		, FIELD
+		, SPACE
+		, TITLE
+		, CONTENTOF
+		, REGISTDAY
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*
+		FROM WRITING A ORDER BY NUM
+		)
+		WHERE RNUM BETWEEN ((#{page}-1)*#{perPageNum}+1) AND (#{page}*#{perPageNum}) 
+		order by num desc, REGISTDAY desc
+ 		
+ ]]>
+	</select>
+
+	<select id="listCriteria"
+		resultType="org.zerock.domain.BoardVO">
+ <![CDATA[
+ select RNUM, NUM
+		, EMAIL
+		, NAME
+		, TYPE
+		, ACREAGE
+		, BUDGET
+		, FIELD
+		, SPACE
+		, TITLE
+		, CONTENTOF
+		, REGISTDAY
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*
+		FROM WRITING A ORDER BY NUM
+		)
+		WHERE RNUM BETWEEN ((#{page}-1)*#{perPageNum}+1) AND (#{page}*#{perPageNum})  
+		order by num desc, REGISTDAY desc
+ ]]>
+<!--  		WHERE RNUM BETWEEN 1 AND 10 -->
+<!-- 		WHERE RNUM BETWEEN #{pageStart}+1 AND 10   -->
+	</select>
+	
+	<select id="countPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(num) 
+ from 
+   writing 
+ where 
+   num > 0 
+ ]]>
+	</select>
+	
+	<select id="getAttach" resultType="string">
+		select fullname from tbl_attach where num = #{num} order by regdate
+	</select> 
+	
+</mapper>
