@@ -3,6 +3,8 @@ package org.zerock.service;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.annotation.Resource;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.TransactionDefinition;
@@ -12,16 +14,19 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.support.DefaultTransactionDefinition;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.FileUtil;
 import org.zerock.domain.FileVO;
 import org.zerock.mapper.BoardMapper;
 
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	
 	@Autowired
 	private BoardMapper boardMapper;
 	
-	
+	@Resource(name = "uploadPath")
+	  private String uploadPath;
 	
 	@Override
 	@Transactional
@@ -68,23 +73,32 @@ public class BoardServiceImpl implements BoardService {
 	}
 	
 	@Override
-	   @Transactional
-	   public BoardVO read(Integer num) throws Exception {
-	       return boardMapper.read(num);
-	     }
-	   
-	    @Override
-	    public void modify(BoardVO board) throws Exception {
-	       boardMapper.update(board);
-	     }
+    @Transactional
+    public BoardVO read(Integer num) throws Exception {
+       return boardMapper.read(num);
+     }
+   
+    @Override
+    public void modify(BoardVO board) throws Exception {
+       boardMapper.update(board);
+     }
 
-	    @Override
-	    public void remove(Integer num) throws Exception {
-	       boardMapper.delete(num);
-	     }
-	    
-	    @Override
-	    public List<FileVO> selectBoardFileList(Integer num) throws Exception {
-	      return boardMapper.selectBoardFileList(num);
-	     }
+    @Override
+    public void remove(Integer num) throws Exception {
+    	
+    	FileUtil fs = new FileUtil(uploadPath);
+    	System.out.println(fs);
+    	List<FileVO> files = boardMapper.selectBoardFileList(num);
+    		
+    	boardMapper.deleteBoardFile(num);
+    	
+       boardMapper.delete(num);
+       
+       fs.deleteFiles(files);
+     }
+    
+    @Override
+    public List<FileVO> selectBoardFileList(Integer num) throws Exception {
+      return boardMapper.selectBoardFileList(num);
+    }
 }

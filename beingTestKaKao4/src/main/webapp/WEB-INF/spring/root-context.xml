@@ -85,6 +85,11 @@
 		destroy-method="close">
 		<constructor-arg ref="hikariConfig" />
 	</bean>
+	
+	<bean id="uploadPath" class="java.lang.String">
+		<constructor-arg value="C:\\Users\\ksmoon\\git\\being\\beingTestKaKao4\\src\\main\\webapp\\resources\\img\\File">
+		</constructor-arg>
+	</bean>
 
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />

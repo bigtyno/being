@@ -10,10 +10,16 @@ import java.util.List;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
+	
+	String filePath = ""; 
+	
+	public FileUtil(String uploadPath) {
+		this.filePath = uploadPath;
+	}
 
     public List<FileVO> saveAllFiles(List<MultipartFile> upfiles) {
         //String filePath = "d:\\workspace\\fileupload\\"; 
-    	String filePath = "C:/spring/img"; 
+    	
         List<FileVO> filelist = new ArrayList<FileVO>();
 
         for (MultipartFile uploadfile : upfiles ) {
@@ -77,4 +83,26 @@ public class FileUtil {
     public String getRealPath(String path, String filename) {
         return path + filename.substring(0,4) + "/";
     }
+    
+    public void deleteFiles(List<FileVO> files) {
+    	
+    	String filePath = "";
+    	
+    	
+    	for(FileVO vo : files) {
+    		File deleteFile = new File(filePath + vo.getRealname());
+    		if(deleteFile!=null) {
+        		
+        		deleteFile.delete();
+        		
+        		System.out.println("파일을 삭제하였습니다.");
+        	} else {
+        		System.out.println("파일이 존재하지 않습니다.");
+        	}
+    	}
+    }
+
+    
 }
+    
+

@@ -27,7 +27,8 @@ public void create(BoardVO board) throws Exception;
 	 
 	  public List<FileVO> selectBoardFileList(Integer num) throws Exception;
 	  
-	  public void deleteBoardFile(HashMap fparam) throws Exception;
+	  public void deleteBoardFile(Integer num) throws Exception;
 	  
 	  public void insertBoardFile(FileVO fileVO) throws Exception;
+	  
 }

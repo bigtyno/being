@@ -233,6 +233,7 @@ public class UserController {
 	   
 	   @RequestMapping(value = "/KaKaoLogin", method = RequestMethod.GET)
 	   public String kakaologin(@RequestParam("code") String code, HttpSession session, Model model)throws Exception{
+		   
 		   JsonNode jsonToken = getAccessToken(code);
 		   System.out.println(jsonToken);
 		   

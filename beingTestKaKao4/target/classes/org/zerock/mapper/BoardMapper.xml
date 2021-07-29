@@ -142,7 +142,7 @@
 	</select>
 
     <!-- =============================================================================== -->
-    <select id="selectBoardFileList" resultType="org.zerock.domain.FileVO" parameterType="String">
+    <select id="selectBoardFileList" resultType="org.zerock.domain.FileVO" >
         SELECT FILENO, FILENAME, REALNAME, FILESIZE
           FROM board_file
          WHERE num=#{num}
@@ -153,14 +153,12 @@
         INSERT INTO board_file (FILENO,NUM, FILENAME, REALNAME, FILESIZE)
         VALUES (FILE_SEQ.nextval, WRITING_SEQ.currval, #{filename}, #{realname}, #{filesize})
     </insert>
-    <delete id="deleteBoardFile" parameterType="hashmap"> 
+    
+    <delete id="deleteBoardFile"> 
         DELETE  
-          FROM board_filee
-         WHERE FILENO IN (
-              <foreach item="item" index="index" collection="fileno" separator=",">
-                     ${item}
-              </foreach>  
-        )             
+          FROM board_file
+         WHERE num =#{num} 
+                     
     </delete> 
     	
 </mapper>

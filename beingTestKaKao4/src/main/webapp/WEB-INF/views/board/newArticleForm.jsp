@@ -43,9 +43,9 @@
         	  <li class="type=ct">
        		   	<select id="type" name="type" size="1">
        		   	<option value="">-주거형태-</option>
-                         <option value="원룸&오피스텔">원룸,오피스텔</option>
+                         <option value="원룸,오피스텔">원룸,오피스텔</option>
                          <option value="아파트">아파트</option>
-                         <option value="빌라&연합">빌라,연합</option>
+                         <option value="빌라,연합">빌라,연합</option>
                          <option value="단독주택">단독주택</option>
                          <option value="사무공간">사무공간</option>
                          <option value="상업공간">상업공간</option>

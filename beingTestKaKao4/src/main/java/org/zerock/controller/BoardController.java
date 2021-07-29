@@ -1,8 +1,18 @@
 package org.zerock.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.IOException;
+import java.io.OutputStream;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,7 +39,10 @@ import org.zerock.service.BoardService;
 public class BoardController {
 
 	private static final Logger logger = LoggerFactory.getLogger(BoardController.class);
-
+	
+	 @Resource(name = "uploadPath")
+	  private String uploadPath;
+	
 	@Inject
 	private BoardService boardService;
 	
@@ -45,11 +58,12 @@ public class BoardController {
 	    logger.info("newArticleForm post ...........");
 	    logger.info(board.toString());		  
 
-       FileUtil fs = new FileUtil();
+       FileUtil fs = new FileUtil(uploadPath);
        List<FileVO> filelist = null;
+       logger.info(uploadPath);
        
        	filelist = fs.saveAllFiles(board.getUploadfile());
-       	logger.info(filelist.toArray()[0].toString());
+       	logger.info(((FileVO)filelist.toArray()[0]).getFilename());
        	
        boardService.create(board, filelist);
 	  
@@ -84,11 +98,18 @@ public class BoardController {
 //	  }
 	 
 	  @RequestMapping(value = "/readArticle", method = RequestMethod.GET)
-	     public void read(@RequestParam("num") int num, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
-
+	  public void read(@RequestParam("num") int num, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {
+		  
+		  List<?> listview = boardService.selectBoardFileList(num);
+		  
+		  logger.info(((FileVO)listview.toArray()[0]).getFilename());
+		  
 	       model.addAttribute(boardService.read(num));
+	       model.addAttribute("listview", listview);
 	     }
 	   
+	  
+	  
 	     @RequestMapping(value = "/remove", method = {RequestMethod.POST ,RequestMethod.GET})
 	     public String remove(@RequestParam("num") int num, RedirectAttributes rttr) throws Exception {
 
@@ -116,5 +137,51 @@ public class BoardController {
 	       return "redirect:/board/listArticle";
 	     } 
 	
+	     @RequestMapping(value = "/fileDownload")
+	     public void fileDownload(HttpServletRequest request,HttpServletResponse response) {
+	         //String path = "d:\\workspace\\fileupload\\"; 
+	         
+	         String filename = request.getParameter("filename");
+	         String downname = request.getParameter("downname");
+	         String realPath = "";
+	         
+	         if (filename == null || "".equals(filename)) {
+	             filename = downname;
+	         }
+	         
+	         try {
+	             filename = URLEncoder.encode(filename, "UTF-8");
+	         } catch (UnsupportedEncodingException ex) {
+	             System.out.println("UnsupportedEncodingException");
+	         }
+	         
+	         realPath = uploadPath + "/" + downname.substring(0,4) + "/" + downname;
+	         System.out.println(realPath);
+	         File file1 = new File(realPath);
+	         System.out.println(file1);
+	         if (!file1.exists()) {
+	             return ;
+	         }
+	         
+	         // �뙆�씪紐� 吏��젙
+	         response.setHeader("Content-Disposition", "attachment; filename=\"" + filename + "\"");
+	         try {
+	             OutputStream os = response.getOutputStream();
+	             FileInputStream fis = new FileInputStream(realPath);
+
+	             int ncount = 0;
+	             byte[] bytes = new byte[512];
+
+	             while ((ncount = fis.read(bytes)) != -1 ) {
+	                 os.write(bytes, 0, ncount);
+	             }
+	             fis.close();
+	             os.close();
+	         } catch (FileNotFoundException ex) {
+	             System.out.println("FileNotFoundException");
+	         } catch (IOException ex) {
+	             System.out.println("IOException");
+	         }
+	     }
 	   
 }

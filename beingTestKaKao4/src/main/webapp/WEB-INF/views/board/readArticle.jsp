@@ -54,8 +54,7 @@
 			
 			<form role="form" method="post">	
 
-						<input type='hidden' name='num' value="${boardVO.num}">
-
+						<input type="hidden" name="num" value="${boardVO.num}">
 			</form>
 			
 	<div class="everthing2">
@@ -118,6 +117,16 @@
 					</div>
 				</div>
 				
+				<div >
+
+			     <c:forEach var="listview" items="${listview}" varStatus="status">
+					     <span >
+							<img src ="${pageContext.request.contextPath}/board/fileDownload?filename=${listview.filename}&downname=${listview.realname}" width="200px" height="200px" style="border-radius: 7px;"> 							 
+					     	<a href="${pageContext.request.contextPath}/board/fileDownload?filename=${listview.filename}&downname=${listview.realname}"> 							 
+						 		${listview.filename}</a> ${listview.size2String()}
+					    </span>
+				</c:forEach>
+			   </div>
 
 			</div>
 
