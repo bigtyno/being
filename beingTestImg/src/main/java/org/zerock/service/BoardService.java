@@ -24,7 +24,6 @@ public interface BoardService {
 
 	 public void remove(Integer num) throws Exception;
 	 
-	 public void fileInsert(FileVO file) throws Exception;
 		  
 
 

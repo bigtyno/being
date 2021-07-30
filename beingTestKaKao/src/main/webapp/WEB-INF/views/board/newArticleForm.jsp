@@ -30,7 +30,7 @@
 
 <p class="box-title">스토리 등록하기</p>
 <div class="box">
-<form action="${pageContext.request.contextPath}/board/newArticleForm" method="post">
+<form action="${pageContext.request.contextPath}/board/newArticleForm" method="post" enctype="multipart/form-data">
 
 <input type="hidden" name="email" value="${login.email}">
 <input type="hidden" name="name" value="${login.name}">
@@ -121,7 +121,7 @@
 </div>
 </div>
 </div>
-
+	<input type="file" name="uploadfile" multiple="" />	
 <div>	
 	 <button type="submit" class="btn" id="btn">새 글 등록</button> 
 </div>

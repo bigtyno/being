@@ -21,13 +21,19 @@ public class BoardVO {
 	private Date registday;
 	private Integer readcount;
 	
-	private 
+	private String[] files;
 	
 //	public BoardVO() {
 //		super();
 //		this.writerVO = new WriterVO();
 //	}
 	
+	public String[] getFiles() {
+		return files;
+	}
+	public void setFiles(String[] files) {
+		this.files = files;
+	}
 	public Integer getNum() {
 		return num;
 	}

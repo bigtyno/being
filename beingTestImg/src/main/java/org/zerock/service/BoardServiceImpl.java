@@ -19,6 +19,14 @@ public class BoardServiceImpl implements BoardService {
 	@Transactional
 	  public void create(BoardVO board) throws Exception {
 	    boardMapper.create(board);
+	    
+	    String[] files = board.getFiles();
+	    
+	    if(files == null) {return;}
+	    
+	    for (String fileName : files) {
+	    	boardMapper.addAttach(fileName);
+	    }
 	  }
 
 	@Override
@@ -62,10 +70,5 @@ public class BoardServiceImpl implements BoardService {
 	       boardMapper.delete(num);
 	     }
 	    
-	    @Override
-		@Transactional
-		  public void fileInsert(FileVO file) throws Exception {
-		    boardMapper.fileInsert(file);
-		  }
 
 }

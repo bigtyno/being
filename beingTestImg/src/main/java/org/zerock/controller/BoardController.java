@@ -112,15 +112,14 @@ public class BoardController {
 	        files.transferTo(destinationFile); 
 	        
 	        
-	        boardService.create(board);
+	        
 	        //안들어감 오류 
 	        
-	        file.setBnum(board.getNum());
+	       // file.setNum(board.getNum());
 	        file.setFileName(destinationFileName);
-	        file.setFileOriName(fileName);
-	        file.setFileUrl(fileUrl);
+	       
 	        
-	        boardService.fileInsert(file);
+	        boardService.create(board);
 		 	}
 	        
 		    

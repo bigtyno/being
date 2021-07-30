@@ -3,21 +3,29 @@ package org.zerock.controller;
 import java.util.List;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RequestPart;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.service.BoardService;
+
+import com.oldtom.smartstock.account.model.LoginUser;
+import com.oldtom.smartstock.board.BoardGroupVO;
 
 /**
  * Handles requests for the application home page.
@@ -37,34 +45,82 @@ public class BoardController {
 	    logger.info("newArticleForm get ...........");
 	  }
 
-	  // @RequestMapping(value = "/register", method = RequestMethod.POST)
-	  // public String registPOST(BoardVO board, Model model) throws Exception {
-	  //
-	  // logger.info("regist post ...........");
-	  // logger.info(board.toString());
-	  //
-	  // service.regist(board);
-	  //
-	  // model.addAttribute("result", "success");
-	  //
-	  // //return "/board/success";
-	  // return "redirect:/board/listAll";
-	  // }
 
-	  @RequestMapping(value = "/newArticleForm", method = RequestMethod.POST)
-	  public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
+		/*
+		 * @RequestMapping(value = "/newArticleForm", method = RequestMethod.POST)
+		 * public String registPOST(BoardVO board, RedirectAttributes rttr) throws
+		 * Exception {
+		 * 
+		 * logger.info("newArticleForm post ...........");
+		 * logger.info(board.toString());
+		 * 
+		 * boardService.create(board);
+		 * 
+		 * rttr.addFlashAttribute("msg", "SUCCESS");
+		 * 
+		 * logger.info(board.toString());
+		 * 
+		 * return "redirect:/board/listArticle"; }
+		 */
+	 
+		/*
+		 * @RequestMapping(value = "/newArticleForm") public String
+		 * boardForm(Authentication auth, HttpServletRequest request, ModelMap modelMap)
+		 * {
+		 * 
+		 * String bgno = request.getParameter("bgno"); String brdno =
+		 * request.getParameter("brdno"); BoardVO boardInfo = null;
+		 * 
+		 * if (brdno != null) { boardInfo = boardSvc.selectBoardOne(brdno); List<?>
+		 * listview = boardSvc.selectBoard8FileList(brdno);
+		 * 
+		 * modelMap.addAttribute("listview", listview); bgno = boardInfo.getBgno(); }
+		 * else { boardInfo = new BoardVO(); boardInfo.setBrdwriter(nickname);
+		 * boardInfo.setBrdwriterid(brdwriterid);; boardInfo.setBrdmemo(""); }
+		 * 
+		 * BoardGroupVO bgInfo = boardGroupSvc.selectBoardGroupOne4Used(bgno); if
+		 * (bgInfo == null) { return "board/listArticle"; }
+		 * 
+		 * modelMap.addAttribute("boardInfo", boardInfo); modelMap.addAttribute("bgno",
+		 * bgno); modelMap.addAttribute("bgInfo", bgInfo);
+		 * 
+		 * return "board/BoardForm"; }
+		 */
 
-	    logger.info("newArticleForm post ...........");
-	    logger.info(board.toString());
+		 
+	 
+		 
+	 
+		/*
+		 * @RequestMapping("/newArticleForm") private String
+		 * boardInsertProc(HttpServletRequest request, @RequestPart MultipartFile files)
+		 * throws Exception{
+		 * 
+		 * BoardVO board = new BoardVO();
+		 * 
+		 * board.setSubject(request.getParameter("subject"));
+		 * board.setContent(request.getParameter("content"));
+		 * board.setWriter(request.getParameter("writer"));
+		 * 
+		 * String sourceFileName = files.getOriginalFilename(); String
+		 * sourceFileNameExtension =
+		 * FilenameUtils.getExtension(sourceFileName).toLowerCase(); File
+		 * destinationFile; String destinationFileName; String fileUrl =
+		 * "uploadFiles 폴더 위치"
+		 * 
+		 * 
+		 * do { destinationFileName = RandomStringUtils.randomAlphanumeric(32) + "." +
+		 * sourceFileNameExtension; destinationFile = new File(fileUrl +
+		 * destinationFileName); } while (destinationFile.exists());
+		 * 
+		 * destinationFile.getParentFile().mkdirs(); files.transferTo(destinationFile);
+		 * 
+		 * mBoardService.boardInsertService(board);
+		 * 
+		 * return "redirect:/board/listArticle"; }
+		 */
 
-	    boardService.create(board);
 
-	    rttr.addFlashAttribute("msg", "SUCCESS");
-	    
-	    logger.info(board.toString());
-	    
-	    return "redirect:/board/listArticle";
-	  }
 
 //	@RequestMapping(value = "/listArticle")
 //	public String boardList(Model model) throws Exception {

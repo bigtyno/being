@@ -15,6 +15,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
+import org.zerock.domain.FileUtil;
+import org.zerock.domain.FileVO;
 import org.zerock.domain.PageMaker;
 import org.zerock.domain.SearchCriteria;
 import org.zerock.service.BoardService;
@@ -51,20 +53,24 @@ public class BoardController {
 	  // return "redirect:/board/listAll";
 	  // }
 
-	  @RequestMapping(value = "/newArticleForm", method = RequestMethod.POST)
-	  public String registPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
-
+	 @RequestMapping(value = "/newArticleForm", method = RequestMethod.POST)
+	  public String registPOST(BoardVO board, RedirectAttributes rttr) throws
+	  Exception {
 	    logger.info("newArticleForm post ...........");
-	    logger.info(board.toString());
+	    logger.info(board.toString());		  
 
-	    boardService.create(board);
+      FileUtil fs = new FileUtil();
+      List<FileVO> filelist = null;
 
-	    rttr.addFlashAttribute("msg", "SUCCESS");
-	    
-	    logger.info(board.toString());
-	    
-	    return "redirect:/board/listArticle";
-	  }
+      	filelist = fs.saveAllFiles(board.getUploadfile());
+
+      boardService.create(board, filelist);
+	  
+      rttr.addFlashAttribute("msg", "SUCCESS");
+	  
+      logger.info(board.toString());
+	  
+	  return "redirect:/board/listArticle"; }
 
 //	@RequestMapping(value = "/listArticle")
 //	public String boardList(Model model) throws Exception {

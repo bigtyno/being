@@ -11,10 +11,11 @@
 		#{type},#{acreage},#{budget},#{field},#{space},#{title},#{contentOf},SYSDATE,#{name},0)
 	</insert>
 	
-	<insert id="fileInsert" parameterType="org.zerock.domain.FileVO">
-       INSERT INTO
-       FILES (FILENUM, BNUM, FILENAME, FILEORINAME, FILEURL)
-   	VALUES (FILES_SEQ.nextval,#{bnum},#{fileName},#{fileOriName},#{fileUrl})
+	<insert id="addAttach">
+		insert into tbl_attach
+		(fullname,num)
+		values 
+		(${fullName),WRITING_SEQ.CURRVAL)
 	</insert>
 
 
