@@ -31,4 +31,6 @@ public void create(BoardVO board) throws Exception;
 	  
 	  public void insertBoardFile(FileVO fileVO) throws Exception;
 	  
+	  public void updateBoardFile(FileVO fileVO) throws Exception;
+	  
 }

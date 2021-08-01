@@ -154,6 +154,11 @@
         VALUES (FILE_SEQ.nextval, WRITING_SEQ.currval, #{filename}, #{realname}, #{filesize})
     </insert>
     
+     <insert id="updateBoardFile" parameterType="org.zerock.domain.FileVO" >
+        INSERT INTO board_file (FILENO,NUM, FILENAME, REALNAME, FILESIZE)
+        VALUES (FILE_SEQ.nextval, ${parentPK}, #{filename}, #{realname}, #{filesize})
+    </insert>
+    
     <delete id="deleteBoardFile"> 
         DELETE  
           FROM board_file

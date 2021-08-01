@@ -59,12 +59,15 @@ public class BoardController {
 	    logger.info(board.toString());		  
 
        FileUtil fs = new FileUtil(uploadPath);
+       
        List<FileVO> filelist = null;
        logger.info(uploadPath);
+       List<?> files = board.getUploadfile();
        
-       	filelist = fs.saveAllFiles(board.getUploadfile());
-       	logger.info(((FileVO)filelist.toArray()[0]).getFilename());
-       	
+       if(files != null && !files.isEmpty()) {
+    	   filelist = fs.saveAllFiles(board.getUploadfile(),board.getNum());
+       }
+       
        boardService.create(board, filelist);
 	  
        rttr.addFlashAttribute("msg", "SUCCESS");
@@ -102,7 +105,7 @@ public class BoardController {
 		  
 		  List<?> listview = boardService.selectBoardFileList(num);
 		  
-		  logger.info(((FileVO)listview.toArray()[0]).getFilename());
+		  //logger.info(((FileVO)listview.toArray()[0]).getFilename());
 		  
 	       model.addAttribute(boardService.read(num));
 	       model.addAttribute("listview", listview);
@@ -122,16 +125,29 @@ public class BoardController {
 
 	     @RequestMapping(value = "/modifyForm", method = RequestMethod.GET)
 	     public void modifyGET(int num, Model model) throws Exception {
-
+	    	 
+	    	 List<?> listview = boardService.selectBoardFileList(num);
+	    	 
 	       model.addAttribute(boardService.read(num));
+	       model.addAttribute("listview", listview);
 	     }
 
 	     @RequestMapping(value = "/modifyForm", method = RequestMethod.POST)
 	     public String modifyPOST(BoardVO board, RedirectAttributes rttr) throws Exception {
-
-	       logger.info("mod post............");
-
-	       boardService.modify(board);
+	    	
+	    	 FileUtil fs = new FileUtil(uploadPath);
+	    	 
+	    	 List<FileVO> filelist = null;
+	       
+	       logger.info(uploadPath);
+	       List<?> files = board.getUploadfile();
+	       
+	       if(files != null && !files.isEmpty()) {
+	    	   fs.deleteFiles(boardService.selectBoardFileList(board.getNum()));
+	    	   filelist = fs.saveAllFiles(board.getUploadfile(),board.getNum());
+	       }
+	       
+	       boardService.modify(board, filelist);
 	       rttr.addFlashAttribute("msg", "SUCCESS");
 
 	       return "redirect:/board/listArticle";

@@ -20,11 +20,11 @@ public interface BoardService {
 
 	 public int listCountCriteria(Criteria cri) throws Exception;
 	 
-	 public void modify(BoardVO board) throws Exception;
+	 public void modify(BoardVO board, List<FileVO> filelist) throws Exception;
 
 	 public void remove(Integer num) throws Exception;
 	 
 	 public List<FileVO> selectBoardFileList(Integer num) throws Exception;
 
-
+	 
 }

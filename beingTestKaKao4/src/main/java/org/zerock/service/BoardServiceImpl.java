@@ -1,17 +1,15 @@
 package org.zerock.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.TransactionDefinition;
-import org.springframework.transaction.TransactionException;
-import org.springframework.transaction.TransactionStatus;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.transaction.support.DefaultTransactionDefinition;
+import org.zerock.controller.BoardController;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.FileUtil;
@@ -21,6 +19,8 @@ import org.zerock.mapper.BoardMapper;
 
 @Service
 public class BoardServiceImpl implements BoardService {
+	
+	//private static final Logger logger = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Autowired
 	private BoardMapper boardMapper;
@@ -78,9 +78,27 @@ public class BoardServiceImpl implements BoardService {
        return boardMapper.read(num);
      }
    
+	//@Override
+	//public void modify(BoardVO board) throws Exception {
+	      // boardMapper.update(board);
+	// }
+
+	
+	
     @Override
-    public void modify(BoardVO board) throws Exception {
-       boardMapper.update(board);
+    public void modify(BoardVO board, List<FileVO> filelist) throws Exception {
+       
+    	boardMapper.update(board);
+       
+       if (filelist != null) {
+    	   boardMapper.deleteBoardFile(board.getNum());
+           for (FileVO f : filelist) {
+               f.setParentPK(board.getNum());
+               boardMapper.updateBoardFile(f);
+           }
+       }
+       
+       
      }
 
     @Override

@@ -30,7 +30,7 @@
 
 <p class="box-title">스토리 수정하기</p>
 <div class="box">
-<form role="form" method="post">
+<form role="form" method="post" enctype="multipart/form-data">
 
 <input type="hidden" name="num" value="${boardVO.num}">
 
@@ -119,8 +119,17 @@
 </p>
 </div>
 </div>
+	<div >
+	     <c:forEach var="listview" items="${listview}" varStatus="status">
+			     <span >
+					<img src ="${pageContext.request.contextPath}/board/fileDownload?filename=${listview.filename}&downname=${listview.realname}" width="200px" height="200px" style="border-radius: 7px;"> 							 
+			     	<a href="${pageContext.request.contextPath}/board/fileDownload?filename=${listview.filename}&downname=${listview.realname}"> 							 
+				 		${listview.filename}</a> ${listview.size2String()}
+			    </span>
+		</c:forEach>
+	   </div>
 </div>
-
+	<input type="file" name="uploadfile" multiple="" />
 <div>	
 	 <button type="submit" class="btn" id="btn">글 수정</button> 
 </div>

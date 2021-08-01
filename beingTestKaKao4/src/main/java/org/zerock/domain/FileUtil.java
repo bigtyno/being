@@ -17,7 +17,7 @@ public class FileUtil {
 		this.filePath = uploadPath;
 	}
 
-    public List<FileVO> saveAllFiles(List<MultipartFile> upfiles) {
+    public List<FileVO> saveAllFiles(List<MultipartFile> upfiles,int num) {
         //String filePath = "d:\\workspace\\fileupload\\"; 
     	
         List<FileVO> filelist = new ArrayList<FileVO>();
@@ -35,6 +35,7 @@ public class FileUtil {
             filedo.setFilename(uploadfile.getOriginalFilename());
             filedo.setRealname(newName);
             filedo.setFilesize(uploadfile.getSize());
+            filedo.setParentPK(num);
             filelist.add(filedo);
         }
         return filelist;

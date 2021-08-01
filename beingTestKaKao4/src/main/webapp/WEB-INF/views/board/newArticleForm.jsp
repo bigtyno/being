@@ -123,7 +123,7 @@
 </div>
 </div>
 </div>  
- 첨부 <input type="file" name="uploadfile" multiple="" />
+  <input type="file" name="uploadfile" multiple="" />
 <div>	
 	 <button type="submit" class="btn" id="btn">새 글 등록</button> 
 </div>
