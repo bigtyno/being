@@ -7,9 +7,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
 public class FileUtil {
+	
+	private static final Logger logger = LoggerFactory.getLogger(FileUtil.class);
 	
 	String filePath = ""; 
 	
@@ -17,8 +21,9 @@ public class FileUtil {
 		this.filePath = uploadPath;
 	}
 
-    public List<FileVO> saveAllFiles(List<MultipartFile> upfiles,int num) {
-        //String filePath = "d:\\workspace\\fileupload\\"; 
+	
+	//이미지 첨부 수정용 
+    public List<FileVO> saveAllFiles(List<MultipartFile> upfiles,int num) throws Exception {
     	
         List<FileVO> filelist = new ArrayList<FileVO>();
 
@@ -37,11 +42,38 @@ public class FileUtil {
             filedo.setFilesize(uploadfile.getSize());
             filedo.setParentPK(num);
             filelist.add(filedo);
+            
+            logger.info(filedo.getParentPK().toString());
         }
         return filelist;
     }    
     
+    
+    //이미지 첨부용
+    public List<FileVO> saveAllFiles(List<MultipartFile> upfiles) throws Exception {
+    	
+        List<FileVO> filelist = new ArrayList<FileVO>();
 
+        for (MultipartFile uploadfile : upfiles ) {
+            if (uploadfile.getSize() == 0) {
+                continue;
+            }
+            
+            String newName = getNewName();
+            
+            saveFile(uploadfile, filePath + "/" + newName.substring(0,4) + "/", newName);
+            
+            FileVO filedo = new FileVO();
+            filedo.setFilename(uploadfile.getOriginalFilename());
+            filedo.setRealname(newName);
+            filedo.setFilesize(uploadfile.getSize());
+            filelist.add(filedo);
+            
+            //logger.info(filedo.getParentPK().toString());
+        }
+        return filelist;
+    }    
+    
     public void makeBasePath(String path) {
         File dir = new File(path); 
         if (!dir.exists()) {
@@ -87,8 +119,7 @@ public class FileUtil {
     
     public void deleteFiles(List<FileVO> files) {
     	
-    	String filePath = "";
-    	
+    	//String filePath = "";
     	
     	for(FileVO vo : files) {
     		File deleteFile = new File(filePath + vo.getRealname());
@@ -97,9 +128,7 @@ public class FileUtil {
         		deleteFile.delete();
         		
         		System.out.println("파일을 삭제하였습니다.");
-        	} else {
-        		System.out.println("파일이 존재하지 않습니다.");
-        	}
+        	} 
     	}
     }
 

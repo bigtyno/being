@@ -62,10 +62,13 @@ public class BoardController {
        
        List<FileVO> filelist = null;
        logger.info(uploadPath);
+       
        List<?> files = board.getUploadfile();
        
+       //logger.info(((FileVO)files.toArray()[0]).getFilename());
+       
        if(files != null && !files.isEmpty()) {
-    	   filelist = fs.saveAllFiles(board.getUploadfile(),board.getNum());
+    	   filelist = fs.saveAllFiles(board.getUploadfile());
        }
        
        boardService.create(board, filelist);
