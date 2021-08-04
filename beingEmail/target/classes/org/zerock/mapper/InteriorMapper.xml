@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.zerock.mapper.InteriorMapper">
+
+	<insert id="create">
+		INSERT INTO CORP_MNG
+		(NUM,CNAME,INTRODUCE,IMAGEA,IMAGEB)
+		values(CORP_MNG_SEQ.nextval,#{cname},#{introduce},#{imagea},#{imageb})
+	</insert>
+
+	<!-- id 속성은 DAO 의 메소드와 같아야 한다. 여기의 boardVO 는 mybatis-confg.xml 에 Alias 되어 
+		있습니다. -->
+	<select id="read" resultType="org.zerock.domain.InteriorVO">
+		SELECT NUM
+		, CNAME
+		, INTRODUCE
+		, IMAGEA
+		, IMAGEB
+		FROM CORP_MNG
+		WHERE NUM = #{num}
+	</select>
+
+	<update id="update">
+		UPDATE CORP_MNG SET
+		CNAME=#{cname}
+		,INTRODUCE=#{introduce}
+		,IMAGEA=#{imagea}
+		,IMAGEB=#{imageb}
+		WHERE NUM = #{num}
+	</update>
+
+	<delete id="delete">
+		delete from CORP_MNG where NUM = #{num}
+	</delete>
+
+	<select id="selectInteriorList"
+		resultType="org.zerock.domain.InteriorVO">
+		SELECT NUM
+		, CNAME
+		, INTRODUCE
+		, IMAGEA
+		, IMAGEB
+		FROM CORP_MNG
+		ORDER BY NUM DESC
+	</select>
+
+	<select id="listPage" resultType="org.zerock.domain.InteriorVO">
+ <![CDATA[
+ SELECT RNUM, NUM
+		, CNAME
+		, INTRODUCE
+		, IMAGEA
+		, IMAGEB
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*
+		FROM CORP_MNG A ORDER BY NUM
+		)
+		WHERE RNUM BETWEEN ((#{page}-1)*#{perPageNum}+1) AND (#{page}*#{perPageNum}) 
+		order by num desc
+ 		
+ ]]>
+	</select>
+
+	<select id="listCriteria" resultType="org.zerock.domain.InteriorVO">
+ <![CDATA[
+ select RNUM, NUM
+		, CNAME
+		, INTRODUCE
+		, IMAGEA
+		, IMAGEB
+		FROM (
+		SELECT ROW_NUMBER() OVER (ORDER BY NUM) RNUM, A.*
+		FROM CORP_MNG A ORDER BY NUM
+		)
+		WHERE RNUM BETWEEN ((#{page}-1)*#{perPageNum}+1) AND (#{page}*#{perPageNum})  
+		order by num desc
+ ]]>
+		<!-- WHERE RNUM BETWEEN 1 AND 10 -->
+		<!-- WHERE RNUM BETWEEN #{pageStart}+1 AND 10 -->
+	</select>
+
+	<select id="countPaging" resultType="int">
+ <![CDATA[
+ select 
+   count(num) 
+ from 
+   corp_mng 
+ where 
+   num > 0 
+ ]]>
+	</select>
+
+</mapper>
