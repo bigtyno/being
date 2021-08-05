@@ -117,9 +117,10 @@ public class UserController {
 
 	@RequestMapping(value = "/joinPost", method = RequestMethod.POST)
 	public String joinPOST(HttpServletRequest req, UserVO userVO, RedirectAttributes rttr) throws Exception {
-
+		
 		String email_code = new TempKey().getKey(30,  false);
 		userVO.setEmail_code(email_code);
+		
 		service.create(userVO);
 		
 		String activationURL = svrAddr + req.getContextPath() + "/user/activation";

@@ -24,6 +24,7 @@ public class UserValidator implements Validator {
     
 	@Autowired
 	private JavaMailSender mailSender;
+	
 
     private final String emailRegExp = 
     		"^([a-zA-Z0-9_\\.\\+/-]+)@([a-zA-Z0-9]+)\\.([a-zA-Z\\.]{2,})$";
@@ -48,7 +49,7 @@ public class UserValidator implements Validator {
   
 
 
-
+    //실제로 메일로 메세지를 보내주는 메서드
     public void validateEmail(String email, String code, String url) {
 
     	try {

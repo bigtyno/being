@@ -97,11 +97,6 @@ public class BoardController {
 	    model.addAttribute("pageMaker", pageMaker);
 	  }
 	
-//	 @RequestMapping(value = "/readArticle", method = RequestMethod.GET)
-//	  public void read(@RequestParam("num") int num, Model model) throws Exception {
-//
-//	    model.addAttribute(boardService.read(num));
-//	  }
 	 
 	  @RequestMapping(value = "/readArticle", method = RequestMethod.GET)
 	  public void read(@RequestParam("num") int num, @ModelAttribute("cri") Criteria cri, Model model) throws Exception {

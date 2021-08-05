@@ -80,7 +80,6 @@
 	                    <input type="password" name="password" class="form-control" placeholder="Password" required="">
 	                    <span>${error}</span>
 	                </div>
-	                <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 	                <button type="submit" class="btn btn-primary block full-width m-b">Login</button>
 	
 	               
