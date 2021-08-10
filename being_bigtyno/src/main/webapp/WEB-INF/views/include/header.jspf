@@ -49,7 +49,7 @@
 						</u:isLogin>
 <%-- 						<u:isGeneral> --%>
 						<c:if test="${login.lvl eq 2}">
-						<li class="hoverr"><a href="${pageContext.request.contextPath}/main/profile.do">마이페이지</a></li>
+						<li class="hoverr"><a href="${pageContext.request.contextPath}/user/profile">마이페이지</a></li>
 <%-- 						</u:isGeneral> --%>
 						</c:if>
 <%-- 						<u:isAdmin> --%>

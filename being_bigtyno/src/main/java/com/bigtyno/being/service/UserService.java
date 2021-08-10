@@ -4,11 +4,11 @@ import java.util.Date;
 import java.util.List;
 
 import com.bigtyno.being.common.Criteria;
-import com.bigtyno.being.domain.BoardVO;
 import com.bigtyno.being.domain.LoginDTO;
 import com.bigtyno.being.domain.UserVO;
 
 public interface UserService {
+	
 	UserVO login(LoginDTO dto) throws Exception;
 
 	void keepLogin(String email, String sessionId, Date next) throws Exception;

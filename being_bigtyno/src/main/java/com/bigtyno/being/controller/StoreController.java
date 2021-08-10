@@ -19,7 +19,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bigtyno.being.common.Criteria;
 import com.bigtyno.being.common.PageMaker;
-import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.common.SearchCriteria;
 import com.bigtyno.being.domain.StoreVO;
 import com.bigtyno.being.service.BoardService;
 import com.bigtyno.being.service.StoreService;

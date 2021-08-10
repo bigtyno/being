@@ -8,6 +8,8 @@ public class LoginDTO {
 	private String email;
 	private String password;
 	private boolean useCookie;
+	//private String name;
+	//private int lvl;
 
 	public String getEmail() {
 		return email;
@@ -32,9 +34,33 @@ public class LoginDTO {
 	public void setUseCookie(boolean useCookie) {
 		this.useCookie = useCookie;
 	}
+/*
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public int getLvl() {
+		return lvl;
+	}
+
+	public void setLvl(int lvl) {
+		this.lvl = lvl;
+	}
+
+	@Override
+	public String toString() {
+		return "LoginDTO [email=" + email + ", password=" + password + ", useCookie=" + useCookie + ", name=" + name
+				+ ", lvl=" + lvl + "]";
+	}
+*/
 
 	@Override
 	public String toString() {
 		return "LoginDTO [email=" + email + ", password=" + password + ", useCookie=" + useCookie + "]";
 	}
+	
 }

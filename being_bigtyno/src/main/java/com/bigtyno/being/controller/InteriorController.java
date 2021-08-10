@@ -19,9 +19,9 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import com.bigtyno.being.common.Criteria;
 import com.bigtyno.being.common.FileUtil;
 import com.bigtyno.being.common.PageMaker;
+import com.bigtyno.being.common.SearchCriteria;
 import com.bigtyno.being.domain.InteriorFileVO;
 import com.bigtyno.being.domain.InteriorVO;
-import com.bigtyno.being.domain.SearchCriteria;
 import com.bigtyno.being.service.InteriorService;
 
 @Controller

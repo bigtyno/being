@@ -18,8 +18,8 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.bigtyno.being.common.Criteria;
 import com.bigtyno.being.common.PageMaker;
+import com.bigtyno.being.common.SearchCriteria;
 import com.bigtyno.being.domain.InteriorAskVO;
-import com.bigtyno.being.domain.SearchCriteria;
 import com.bigtyno.being.service.InteriorAskService;
 
 /**

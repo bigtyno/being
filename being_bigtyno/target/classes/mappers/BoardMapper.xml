@@ -33,7 +33,7 @@
 	<update id="readCount" parameterType="com.bigtyno.being.domain.BoardVO">
 		UPDATE WRITING
 		SET READCOUNT = READCOUNT+1
-		WHERE NUM= #{NUM}
+		WHERE NUM= #{num}
 	</update>
 
 	<update id="update">
@@ -232,7 +232,7 @@
 		</if>
 	</sql>
 
-	<select id="listSearch" resultType="com.bigtyno.being.domain.BoardVO">
+<!-- 	<select id="listSearch" resultType="com.bigtyno.being.domain.BoardVO">
 <![CDATA[ 
  select * 
  from WRITING 
@@ -244,7 +244,7 @@
  order by NUM desc
  limit #{pageStart}, #{perPageNum}
 ]]>
-	</select>
+	</select> -->
 
 	<select id="listSearchCount" resultType="int">
 <![CDATA[ 

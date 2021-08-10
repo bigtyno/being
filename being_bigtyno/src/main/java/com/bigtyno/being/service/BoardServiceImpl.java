@@ -13,10 +13,10 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.bigtyno.being.common.Criteria;
 import com.bigtyno.being.common.FileUtil;
+import com.bigtyno.being.common.SearchCriteria;
 import com.bigtyno.being.controller.BoardController;
 import com.bigtyno.being.domain.BoardVO;
 import com.bigtyno.being.domain.FileVO;
-import com.bigtyno.being.domain.SearchCriteria;
 import com.bigtyno.being.mapper.BoardMapper;
 
 @Service

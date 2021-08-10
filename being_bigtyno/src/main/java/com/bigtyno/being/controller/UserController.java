@@ -74,16 +74,11 @@ public class UserController {
 	public void loginPOST(LoginDTO dto, HttpServletRequest request, HttpSession session, Model model) throws Exception {
 		System.out.println("/user/loginPost 실행 ....");
 		UserVO vo = service.login(dto);
-		// System.out.println("*** UserVO.name="+vo.getName());
+		
 		if (vo == null) {
 			return;
 		}
-//		if (vo.getLvl() == 1) {
-//			request.getSession().setAttribute("admin", vo);
-//		}
-//		if (vo.getLvl() == 2) {
-//			request.getSession().setAttribute("general", vo);
-//		}
+
 		model.addAttribute("userVO", vo);
 		if (dto.isUseCookie()) {
 			int amount = 60 * 60 * 24 * 7;

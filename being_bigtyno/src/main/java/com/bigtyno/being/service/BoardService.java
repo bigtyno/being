@@ -4,9 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.bigtyno.being.common.Criteria;
+import com.bigtyno.being.common.SearchCriteria;
 import com.bigtyno.being.domain.BoardVO;
 import com.bigtyno.being.domain.FileVO;
-import com.bigtyno.being.domain.SearchCriteria;
 
 public interface BoardService {
 	
