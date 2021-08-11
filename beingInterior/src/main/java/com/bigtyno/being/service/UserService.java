@@ -1,12 +1,13 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.Date;
 import java.util.List;
 
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.UserVO;
 import org.zerock.dto.LoginDTO;
+
+import com.bigtyno.being.domain.BoardVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.UserVO;
 
 public interface UserService {
 	UserVO login(LoginDTO dto) throws Exception;

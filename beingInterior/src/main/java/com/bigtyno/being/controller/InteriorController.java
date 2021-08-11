@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.util.List;
 
@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.InteriorVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.FileUtil;
 
-import org.zerock.domain.InteriorFileVO;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.SearchCriteria;
-import org.zerock.service.InteriorService;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.FileUtil;
+import com.bigtyno.being.domain.InteriorFileVO;
+import com.bigtyno.being.domain.InteriorVO;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.service.InteriorService;
 
 @Controller
 @RequestMapping("/interior/*")

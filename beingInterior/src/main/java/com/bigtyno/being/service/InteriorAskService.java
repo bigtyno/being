@@ -1,10 +1,10 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.HashMap;
 import java.util.List;
 
-import org.zerock.domain.InteriorAskVO;
-import org.zerock.domain.Criteria;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.InteriorAskVO;
 
 public interface InteriorAskService {
 	

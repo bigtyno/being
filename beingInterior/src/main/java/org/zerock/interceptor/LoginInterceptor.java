@@ -9,8 +9,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
-import org.zerock.domain.UserVO;
-import org.zerock.service.UserService;
+
+import com.bigtyno.being.domain.UserVO;
+import com.bigtyno.being.service.UserService;
 
 public class LoginInterceptor extends HandlerInterceptorAdapter {
 	private static final String LOGIN = "login";

@@ -10,8 +10,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.handler.HandlerInterceptorAdapter;
 import org.springframework.web.util.WebUtils;
-import org.zerock.domain.UserVO;
-import org.zerock.service.UserService;
+
+import com.bigtyno.being.domain.UserVO;
+import com.bigtyno.being.service.UserService;
 
 public class AuthInterceptor extends HandlerInterceptorAdapter {
 

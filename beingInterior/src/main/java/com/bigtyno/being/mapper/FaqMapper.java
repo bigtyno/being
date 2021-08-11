@@ -1,9 +1,9 @@
-package org.zerock.mapper;
+package com.bigtyno.being.mapper;
 
 import java.util.List;
 
-import org.zerock.domain.Criteria;
-import org.zerock.domain.FaqVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.FaqVO;
 
 public interface FaqMapper {
 

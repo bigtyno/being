@@ -1,4 +1,4 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.List;
 
@@ -7,10 +7,10 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.StoreReviewVO;
-//import org.zerock.mapper.StoreMapper;
-import org.zerock.mapper.StoreReviewMapper;
+
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.StoreReviewVO;
+import com.bigtyno.being.mapper.StoreReviewMapper;
 
 @Service
 public class StoreReviewServiceImpl implements StoreReviewService {

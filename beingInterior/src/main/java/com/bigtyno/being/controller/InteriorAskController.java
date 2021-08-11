@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.InteriorAskVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.SearchCriteria;
-import org.zerock.service.InteriorAskService;
+
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.InteriorAskVO;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.service.InteriorAskService;
 
 /**
  * Handles requests for the application home page.

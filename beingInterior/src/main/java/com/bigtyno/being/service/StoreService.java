@@ -1,9 +1,9 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.List;
 
-import org.zerock.domain.StoreVO;
-import org.zerock.domain.Criteria;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.StoreVO;
 
 public interface StoreService {
 

@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.util.List;
 
@@ -15,11 +15,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.StoreVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.SearchCriteria;
-import org.zerock.service.StoreService;
+
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.domain.StoreVO;
+import com.bigtyno.being.service.StoreService;
 
 @Controller
 @RequestMapping("/store/*")

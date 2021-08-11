@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
@@ -35,13 +35,12 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
-import org.zerock.domain.MailHandler;
-import org.zerock.domain.TempKey;
-import org.zerock.domain.UserVO;
 import org.zerock.dto.LoginDTO;
 
-import org.zerock.service.UserService;
-
+import com.bigtyno.being.domain.MailHandler;
+import com.bigtyno.being.domain.TempKey;
+import com.bigtyno.being.domain.UserVO;
+import com.bigtyno.being.service.UserService;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
@@ -155,7 +154,7 @@ public class UserController {
 
 		logger.info(userVO.toString());
 
-		return "redirect:/user/loginForm";
+		return "/user/joinSuccess";
 	}
 	
 	
@@ -286,6 +285,7 @@ public class UserController {
 			   vo.setEmail(id); 
 			   vo.setName(nickName);
 			   vo.setPassword(id);
+			   //vo.setLvl(2);
 			   service.create(vo);
 			   
 		      }

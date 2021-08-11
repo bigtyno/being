@@ -1,4 +1,4 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.List;
 
@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.domain.StoreVO;
-import org.zerock.mapper.StoreMapper;
-import org.zerock.domain.Criteria;
+
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.StoreVO;
+import com.bigtyno.being.mapper.StoreMapper;
 
 @Service
 public class StoreServiceImpl implements StoreService {

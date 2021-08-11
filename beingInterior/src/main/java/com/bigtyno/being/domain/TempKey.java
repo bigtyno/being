@@ -1,4 +1,4 @@
-package org.zerock.domain;
+package com.bigtyno.being.domain;
 
 import java.util.Random;
 

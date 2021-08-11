@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.util.Date;
 import java.util.List;
@@ -19,15 +19,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.springframework.web.util.WebUtils;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.SearchCriteria;
-//import org.zerock.domain.BoardVO;
-import org.zerock.domain.UserVO;
 import org.zerock.dto.LoginDTO;
 import org.zerock.interceptor.LoginInterceptor;
-import org.zerock.service.UserService;
+
+import com.bigtyno.being.domain.BoardVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.domain.UserVO;
+import com.bigtyno.being.service.UserService;
 
 @Controller
 @RequestMapping("/admin/*")

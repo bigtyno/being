@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -23,13 +23,14 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.FileUtil;
-import org.zerock.domain.FileVO;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.SearchCriteria;
-import org.zerock.service.BoardService;
+
+import com.bigtyno.being.domain.BoardVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.FileUtil;
+import com.bigtyno.being.domain.FileVO;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.SearchCriteria;
+import com.bigtyno.being.service.BoardService;
 
 /**
  * Handles requests for the application home page.
@@ -152,7 +153,6 @@ public class BoardController {
 
 	@RequestMapping(value = "/fileDownload")
 	public void fileDownload(HttpServletRequest request, HttpServletResponse response) {
-		// String path = "d:\\workspace\\fileupload\\";
 
 		String filename = request.getParameter("filename");
 		String downname = request.getParameter("downname");

@@ -1,4 +1,4 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.List;
 
@@ -7,13 +7,14 @@ import javax.annotation.Resource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.domain.InteriorVO;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.FileUtil;
-import org.zerock.domain.FileVO;
-import org.zerock.domain.InteriorFileVO;
-import org.zerock.mapper.InteriorMapper;
+
+import com.bigtyno.being.domain.BoardVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.FileUtil;
+import com.bigtyno.being.domain.FileVO;
+import com.bigtyno.being.domain.InteriorFileVO;
+import com.bigtyno.being.domain.InteriorVO;
+import com.bigtyno.being.mapper.InteriorMapper;
 
 @Service
 public class InteriorServiceImpl implements InteriorService {

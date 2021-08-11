@@ -1,4 +1,4 @@
-package org.zerock.service;
+package com.bigtyno.being.service;
 
 import java.util.List;
 
@@ -9,12 +9,13 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.zerock.controller.BoardController;
-import org.zerock.domain.BoardVO;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.FileUtil;
-import org.zerock.domain.FileVO;
-import org.zerock.mapper.BoardMapper;
+
+import com.bigtyno.being.controller.BoardController;
+import com.bigtyno.being.domain.BoardVO;
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.FileUtil;
+import com.bigtyno.being.domain.FileVO;
+import com.bigtyno.being.mapper.BoardMapper;
 
 
 @Service
@@ -73,7 +74,7 @@ public class BoardServiceImpl implements BoardService {
 				boardVO.setFileRealName(fileVO.getRealname());
 			}
 		}
-		logger.info("board_list"+board_list.toArray()[5].toString());
+		//logger.info("board_list"+board_list.toArray()[5].toString());
 		
 	    return board_list;
 	  }

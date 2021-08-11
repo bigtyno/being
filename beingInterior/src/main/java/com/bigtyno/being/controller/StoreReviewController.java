@@ -1,4 +1,4 @@
-package org.zerock.controller;
+package com.bigtyno.being.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -14,11 +14,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.zerock.domain.Criteria;
-import org.zerock.domain.PageMaker;
-import org.zerock.domain.StoreReviewVO;
-import org.zerock.domain.StoreVO;
-import org.zerock.service.StoreReviewService;
+
+import com.bigtyno.being.domain.Criteria;
+import com.bigtyno.being.domain.PageMaker;
+import com.bigtyno.being.domain.StoreReviewVO;
+import com.bigtyno.being.domain.StoreVO;
+import com.bigtyno.being.service.StoreReviewService;
 
 @RestController
 @RequestMapping("/storeReview/*")

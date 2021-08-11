@@ -1,4 +1,4 @@
-package org.zerock.mapper;
+package com.bigtyno.being.mapper;
 
 import org.apache.ibatis.annotations.Select;
 
